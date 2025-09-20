@@ -1,0 +1,65 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+      "padding": {
+        "top": 1,
+        "left": 2
+      },
+      "color": {
+         "1": "#FFA23A",
+         "2": "#FFA23A"
+      },
+      "type": "small"
+  },
+  "display": {
+      "separator": "  ",
+      "color": {
+         "keys": "#FFA23A",
+         "title": "#FFA23A"
+      },
+      "percent": {
+         "color": {
+            "green": "white",
+            "yellow": "white",
+            "red": "white"
+         }
+      }
+  },
+  "modules": [
+      "break",
+       {
+          "type": "title",
+          "format": "{user-name-colored}{##FFA23A}{at-symbol-colored}{host-name-colored}"
+       },
+       {
+          "type": "os",
+          "key": "os     "
+      },
+      {
+          "type": "kernel",
+          "key": "kernel "
+      },
+      {
+          "type": "shell",
+          "key": "shell  " 
+      },
+      {
+          "type": "disk",
+          "key": "disk   ",
+          "format": "{} / {} [{}]",
+          "folders": "/home"
+      },
+      {
+          "type": "memory",
+          "key": "mem    ",
+          "format": "{} / {} [{}]"
+      },
+      {
+          "type": "publicip",
+          "key": "ip     ",
+          "format": "{}"
+      },
+      "break",
+      "break"
+  ]
+}
