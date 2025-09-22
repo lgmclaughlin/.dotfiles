@@ -6,16 +6,16 @@
         "left": 2
       },
       "color": {
-         "1": "#FFA23A",
-         "2": "#FFA23A"
+         "1": "#E6F9FE",
+         "2": "#73DFFA"
       },
       "type": "small"
   },
   "display": {
       "separator": "  ",
       "color": {
-         "keys": "#FFA23A",
-         "title": "#FFA23A"
+         "keys": "#73DFFA",
+         "title": "#73DFFA"
       },
       "percent": {
          "color": {
@@ -29,7 +29,7 @@
       "break",
        {
           "type": "title",
-          "format": "{user-name-colored}{##FFA23A}{at-symbol-colored}{host-name-colored}"
+          "format": "{user-name-colored}{##73DFFA}{at-symbol-colored}{host-name-colored}"
        },
        {
           "type": "os",
