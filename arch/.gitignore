@@ -1,3 +1,10 @@
 .config/.mozilla/
 .config/systemd/
 .config/dconf/
+.config/go/
+.config/goa-1.0/
+.config/ibus/
+.config/pulse/
+.config/epiphany/
+user-dirs.locale
+
