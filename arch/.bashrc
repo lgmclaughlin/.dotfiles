@@ -1,14 +1,26 @@
-# if not interactive, return
+# check interactive -------------------------------------------
 
 [[ $- != *i* ]] && return
 
-# aliases
+# export ------------------------------------------------------
 
-alias ls='exa -lah --group-directories-first'
+export PATH="/ur/lib/ccache/bin/:$PATH"
+export PATH=$PATH:~/.local/bin/
+
+# aliases -----------------------------------------------------
+
+alias c='clear'
+alias ls='exa -la --group-directories-first'
+alias lt='exa -a --no-header --tree --level=1'
 alias grep='grep --color=auto'
 alias v='nvim'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit -m'
+alias gp='git push'
+alias gpl='git pull'
 
-# autorun
+# autorun -----------------------------------------------------
 
 fastfetch
 
@@ -19,22 +31,26 @@ export EXA_COLORS="\
 	*.sh=38;5;117:\
 	fi=38;5;195"
 
-# setup pre-command for pwd printing
+# precmd -------------------------------------------------
 
 __is_first_prompt=true
 
 precmd() {
-	if [ "$__is_first_prompt" = true ]; then
+	local dir="${PWD#$HOME/}"
+
+	if [[ "$__is_first_prompt" = true ]]; then
 		__is_first_prompt=false
+		if [[ ! "$dir" == "$HOME" ]]; then
+			echo -e "$dir"
+		fi
 		return
 	fi
 
-	local dir="$PWD"
 
 	if [[ "$dir" == "$HOME" ]]; then
 		echo -e "\n~"
 	elif [[ "$dir" == "$HOME"* ]]; then
-		dir="${dir#$HOME/}"
+		dir="$dir"
 		echo -e "\n$dir"
 	else
 		dir="${dir#/}"
@@ -44,7 +60,7 @@ precmd() {
 
 PROMPT_COMMAND=precmd
 
-# custom commands
+# custom commands ---------------------------------------------
 
 clear() {
 	command clear
@@ -81,6 +97,6 @@ o() {
 	disown
 }
 
-# prompt string
+# prompt str --------------------------------------------------
 
 PS1="$ "

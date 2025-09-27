@@ -1,0 +1,82 @@
+/* matugen ----------------------------------------------------- */
+
+@import 'colors.css';
+
+/* general ----------------------------------------------------- */
+ 
+* {
+	font-family: "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+	background-image: none;
+	transition: 20ms;
+	box-shadow: none;
+}
+
+window {
+	background: url("../../.cache/wallpaper/blurred_wallpaper.png");
+	background-size: cover;
+	font-size: 12pt;
+}
+
+button {
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 20%;
+	animation: gradient_f 20s ease-in infinite;
+	border-radius: 80px;
+	border: 1.5pt solid @on_surface;
+	transition: all 0.2s cubic-bezier(.55, 0.0, .28, 1.682), background-color 0.1s ease-in-out;
+	color: @foreground;
+	text-shadow: none;
+	background-color: alpha(@on_primary, 0.5);
+	min-width: 100px;
+}
+
+button:hover {
+    background-color: alpha(@on_primary, 0.9);;
+    opacity: 0.8;
+    background-size: 25%;
+    margin: 30px;
+    border-radius: 80px;
+}
+
+button span {
+    font-size: 1.2em;
+}
+
+/* buttons ----------------------------------------------------- */
+
+#lock {
+	margin: 10px;
+	border-radius: 20px;
+	background-image: image(url("icons/lock.png"));
+}
+
+#logout {
+	margin: 10px;
+	border-radius: 20px;
+	background-image: image(url("icons/logout.png"));
+}
+
+#suspend {
+	margin: 10px;
+	border-radius: 20px;
+	background-image: image(url("icons/suspend.png"));
+}
+
+#hibernate {
+	margin: 10px;
+	border-radius: 20px;
+	background-image: image(url("icons/hibernate.png"));
+}
+
+#shutdown {
+	margin: 10px;
+	border-radius: 20px;
+	background-image: image(url("icons/shutdown.png"));
+}
+
+#reboot {
+	margin: 10px;
+	border-radius: 20px;
+	background-image: image(url("icons/reboot.png"));
+}

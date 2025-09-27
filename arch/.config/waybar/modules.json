@@ -36,7 +36,7 @@
   },
   "custom/exit": {
     "format": "",
-    "on-click": "~/.config/waybar/wlogout.sh",
+    "on-click": "~/.config/wlogout/wlogout.sh",
     "on-click-right": "hyprlock",
     "tooltip-format": "Left: Power menu\nRight: Lock screen"
   },
