@@ -30,7 +30,7 @@
     "format": ""
   },
   "custom/appmenu": {
-    "format": "Apps",
+    "format": "run run run",
     "on-click": "sleep 0.2;pkill rofi || rofi -show drun -replace",
     "tooltip-format": "Left: Open the application launcher"
   },
@@ -45,7 +45,7 @@
     "spacing": 10
   },
   "clock": {
-    "format": "{:%H:%M %a}",
+    "format": "{:%H%M_%m_%d_%y}",
     "timezone": "America/Los_Angeles",
     "tooltip": false
   },

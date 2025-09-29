@@ -1,6 +1,6 @@
 # setup cache -------------------------------------------------
 
-use_cache=1
+use_cache=0
 cache_folder="$HOME/.cache/wallpaper"
 
 if [ ! -d "$cache_folder" ]; then
