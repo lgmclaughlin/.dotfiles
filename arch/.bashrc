@@ -20,6 +20,7 @@ alias gc='git commit -m'
 alias gp='git push'
 alias gpl='git pull'
 alias gd='git diff'
+alias gcl='git clone'
 
 # autorun -----------------------------------------------------
 

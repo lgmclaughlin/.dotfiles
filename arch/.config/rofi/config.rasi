@@ -8,8 +8,8 @@
 
 configuration {
     modi:                       "drun,filebrowser,window,run";
-    font:                       "Fira Sans 11";
-    font-size:                  8px;
+    font:                       "Fira Sans 15";
+    font-size:                  15px;
     show-icons:                 true;
     display-drun:                " ";
     display-run:                 " ";
@@ -32,8 +32,8 @@ configuration {
 // main --------------------------------------------------------
 
 window {
-    height:                      23em;
-    width:                       39em;
+    height:                      30em;
+    width:                       54em;
     transparency:                "real";
     fullscreen:                  false;
     enabled:                     true;
@@ -53,7 +53,7 @@ mainbox {
     orientation:                 horizontal;
     children:                    [ "imagebox" , "listbox" ];
     background-color:            transparent;
-    background-image:            @current-image;
+    background-image:            url("/home/lgm/.cache/wallpaper/blurred_wallpaper.png", width); //@current-image;
 }
 
 imagebox {
