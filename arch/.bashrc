@@ -21,6 +21,7 @@ alias gp='git push'
 alias gpl='git pull'
 alias gd='git diff'
 alias gcl='git clone'
+alias sp='spotify_player'
 
 # autorun -----------------------------------------------------
 
