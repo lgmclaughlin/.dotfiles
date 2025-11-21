@@ -82,7 +82,7 @@ window#waybar {
 
 #workspaces button:hover {
     color: @on_secondary;
-    background: @on_secondary;
+    background: @workspacesbackground2;
     border-radius: 15px;
     min-width: 45px;
     background-size: 400% 400%;

@@ -4,8 +4,8 @@
 
 # export ------------------------------------------------------
 
-export PATH="/ur/lib/ccache/bin/:$PATH"
-export PATH=$PATH:~/.local/bin/
+export PATH="/usr/lib/ccache/bin/:$PATH"
+export PATH="$PATH:$HOME/.local/bin/"
 
 # aliases -----------------------------------------------------
 
@@ -13,7 +13,9 @@ alias c='clear'
 alias ls='exa -la --group-directories-first'
 alias lt='exa -a --no-header --tree --level=1'
 alias grep='grep --color=auto'
+
 alias v='nvim'
+
 alias gs='git status'
 alias gr='git restore'
 alias ga='git add'
@@ -22,12 +24,18 @@ alias gp='git push'
 alias gpl='git pull'
 alias gd='git diff'
 alias gcl='git clone'
+
+alias db='dotnet build'
+alias dr='dotnet run'
+alias dt='dotnet test'
+
 alias t='tmux'
-alias tn='tmux new -s'
 alias tl='tmux ls'
 alias ta='tmux a'
+alias tn='tmux new -s'
 alias tat='tmux a -t'
 alias tk='tmux kill-session -t'
+
 alias sp='spotify_player'
 
 # autorun -----------------------------------------------------
@@ -105,6 +113,55 @@ o() {
 
 	nohup "$app" "${options[@]}" >/dev/null 2>&1 &
 	disown
+}
+
+tln() {
+	if [ -z "$1" ]; then
+		echo "Usage: tln <session_name>"
+		return 1
+	fi
+
+	local name="$1"
+	local conf="$HOME/.config/tmux/tmux.conf"
+
+	tmux -L "$name" -f "$conf" new -As "$name" 2>/dev/null || echo "No tmux server found for socket '$name'"
+}
+
+tll () {
+	if [ -z "$1" ]; then
+		echo "Usage: tll <session_name>"
+		return 1
+	fi
+
+	local name="$1"
+
+	tmux -L "$name" ls 2>/dev/null || echo "No tmux server found for socket '$name'"
+}
+
+tla () {
+	if [ -z "$1" ]; then
+		echo "Usage: tla <session_name>"
+		return 1
+	fi
+
+	local name="$1"
+
+	tmux -L "$name" attach 2>/dev/null || echo "No tmux server found for socket '$name'"
+}
+
+tlk () {
+	if [ -z "$1" ]; then
+		echo "Usage: tlk <session_name>"
+		return 1
+	fi
+
+	local name="$1"
+
+	tmux -L "$name" kill-server 2>/dev/null || echo "No tmux server found for socket '$name'"
+}
+
+tclearsaves () {
+	command rm -rf ~/.tmux/session-saves/*
 }
 
 # prompt str --------------------------------------------------
