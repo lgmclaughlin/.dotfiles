@@ -76,13 +76,14 @@ window#waybar {
     min-width: 52px;
     background-size: 400% 400%;
     transition: all 0.3s ease-in-out;
-    opacity: 0.8;
+	opacity: 0.8;
     border: 2pt solid @bordercolor;
 }
 
 #workspaces button:hover {
     color: @on_secondary;
-    background: @workspacesbackground2;
+    background: #ffffff;
+    opacity: 1;
     border-radius: 15px;
     min-width: 45px;
     background-size: 400% 400%;

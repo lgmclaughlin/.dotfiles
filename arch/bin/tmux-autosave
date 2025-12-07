@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+SOCKETS=("dev" "test")
+
+while true; do
+  for s in "${SOCKETS[@]}"; do
+    if tmux -L "$s" has-session 2>/dev/null; then
+      tmux -L "$s" run-shell ~/.tmux/plugins/tmux-resurrect/scripts/save.sh
+      echo "Saved tmux state for socket: $s"
+    fi
+  done
+  sleep 900
+done

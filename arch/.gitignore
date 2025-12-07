@@ -1,15 +1,15 @@
 .config/.mozilla/
-.config/systemd/
 .config/dconf/
 .config/go/
 .config/goa-1.0/
 .config/ibus/
-.config/pulse/
 .config/epiphany/
 .config/google-chrome/
 .config/Logseq/
 .config/mimeapps.list
 .config/spotify/
 .config/ookla/
+.config/menus/
+.config/pulse/
 user-dirs.locale
 

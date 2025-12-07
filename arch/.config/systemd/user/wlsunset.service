@@ -1,0 +1,9 @@
+[Unit]
+Description=wlsunset
+
+[Service]
+ExecStart=/usr/bin/wlsunset -S 20:00 -s 08:00 -t 5000 -T 6500
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
