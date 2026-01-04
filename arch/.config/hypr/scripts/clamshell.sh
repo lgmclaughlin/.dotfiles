@@ -1,12 +1,26 @@
 #!/bin/bash
 
-RES=$1
-SCALE=$2
+ACTION="$1"
+INTERNAL_MON="$2"
+EXTERNAL_MON="$3"
+INTERNAL_RES="$4"
+INTERNAL_SCALE="$5"
+EXTERNAL_RES="$6"
+EXTERNAL_SCALE="$7"
 
-MONITOR_COUNT=$(hyprctl monitors -j | jq '. | length')
+get_monitor_count() {
+    hyprctl monitors all -j | jq '. | length'
+}
 
-if [ "$MONITOR_COUNT" -le 1 ]; then
-	systemctl suspend
-elif [ -n "$RES" ] && [ -n "$SCALE" ]; then
-	hyprctl keyword monitor eDP-1, "$RES", 0x0, "$SCALE"
-fi
+case "$ACTION" in
+    close)
+        if [ "$(get_monitor_count)" -gt 1 ]; then
+            hyprctl keyword monitor "$INTERNAL_MON", "$EXTERNAL_RES", 0x0, "$EXTERNAL_SCALE"
+        else
+            systemctl suspend
+        fi
+        ;;
+    open)
+    	hyprctl keyword monitor "$INTERNAL_MON", "$INTERNAL_RES", 0x0, "$INTERNAL_SCALE"
+        ;;
+esac

@@ -1,0 +1,28 @@
+max-history=100
+sort=-time
+layer=top
+anchor=top-right
+
+font=monospace 10
+width=370
+height=95
+margin=8
+padding=8
+border-size=2
+border-radius=12
+
+background-color=#1e1e2eaa
+text-color=#cdd6f4
+border-color=#eeeeee66
+progress-color=over #313244aa
+
+default-timeout=8000
+
+[urgency=high]
+background-color=#cdd6f4
+text-color=#1e1e2eaa
+border-color=#eeeeee66
+progress-color=over #313244aa
+
+default-timeout=0
+
