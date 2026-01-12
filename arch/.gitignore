@@ -11,5 +11,9 @@
 .config/ookla/
 .config/menus/
 .config/pulse/
+.config/GIMP/
+.config/timewarrior/
+.config/vlc/
+.config/pulse/
 user-dirs.locale
 

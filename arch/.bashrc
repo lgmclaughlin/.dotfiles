@@ -6,6 +6,7 @@
 
 export PATH="/usr/lib/ccache/bin/:$PATH"
 export PATH="$PATH:$HOME/.local/bin/"
+export HYPRSHOT_DIR=/home/lgm/pictures/
 
 # aliases -----------------------------------------------------
 
@@ -35,6 +36,15 @@ alias ta='tmux a'
 alias tn='tmux new -s'
 alias tat='tmux a -t'
 alias tk='tmux kill-session -t'
+
+alias twt='timew track'
+alias tws='timew summary'
+alias twsa='timew summary :all'
+alias twst='timew start'
+alias twstp='timew stop'
+
+alias ewwssh='ssh -i ~/.ssh/bluehost_epicww epicwood@162.241.218.139'
+alias ewwcd='cd ~/dev/web/epicww/staging/5658'
 
 alias sp='spotify_player'
 
