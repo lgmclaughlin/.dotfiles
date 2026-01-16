@@ -17,6 +17,13 @@ alias grep='grep --color=auto'
 
 alias v='nvim'
 
+alias t='tmux'
+alias tl='tmux ls'
+alias ta='tmux a'
+alias tn='tmux new -s'
+alias tat='tmux a -t'
+alias tk='tmux kill-session -t'
+
 alias gs='git status'
 alias gr='git restore'
 alias ga='git add'
@@ -30,21 +37,19 @@ alias db='dotnet build'
 alias dr='dotnet run'
 alias dt='dotnet test'
 
-alias t='tmux'
-alias tl='tmux ls'
-alias ta='tmux a'
-alias tn='tmux new -s'
-alias tat='tmux a -t'
-alias tk='tmux kill-session -t'
+alias dcu='docker compose up -d'
+alias dcd='docker compose down'
+alias deeww='docker exec -it web-dev-sandbox bash -c "source ~/.bashrc && bash"'
+
+alias ewwssh='ssh -i ~/.ssh/bluehost_epicww epicwood@162.241.218.139'
+alias ewwcd='cd ~/dev/web/epicww/staging/5658'
 
 alias twt='timew track'
 alias tws='timew summary'
 alias twsa='timew summary :all'
+alias twsw='timew summary :week'
 alias twst='timew start'
 alias twstp='timew stop'
-
-alias ewwssh='ssh -i ~/.ssh/bluehost_epicww epicwood@162.241.218.139'
-alias ewwcd='cd ~/dev/web/epicww/staging/5658'
 
 alias sp='spotify_player'
 
