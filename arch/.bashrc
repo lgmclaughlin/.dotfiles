@@ -11,9 +11,13 @@ export HYPRSHOT_DIR=/home/lgm/pictures/
 # aliases -----------------------------------------------------
 
 alias c='clear'
+
 alias ls='exa -la --group-directories-first'
-alias lt='exa -a --no-header --tree --level=1'
-alias grep='grep --color=auto'
+alias lst='exa -a --tree --group-directories-first'
+alias lstg='exa -a --tree --git-ignore --group-directories-first'
+
+alias grp='grep --color=auto'
+alias grpr='grep -r --color=auto'
 
 alias v='nvim'
 
@@ -26,12 +30,15 @@ alias tk='tmux kill-session -t'
 
 alias gs='git status'
 alias gr='git restore'
+alias grs='git restore --staged'
 alias ga='git add'
+alias gaa='git add --all'
 alias gc='git commit -m'
 alias gp='git push'
 alias gpl='git pull'
 alias gd='git diff'
 alias gcl='git clone'
+alias gl='git log'
 
 alias db='dotnet build'
 alias dr='dotnet run'
@@ -39,17 +46,26 @@ alias dt='dotnet test'
 
 alias dcu='docker compose up -d'
 alias dcd='docker compose down'
-alias deeww='docker exec -it web-dev-sandbox bash -c "source ~/.bashrc && bash"'
+alias deeww='docker compose -p epicww exec sandbox bash -lc "bash"'
 
 alias ewwssh='ssh -i ~/.ssh/bluehost_epicww epicwood@162.241.218.139'
 alias ewwcd='cd ~/dev/web/epicww/staging/5658'
+alias ewwtcd='cd ~/dev/web/epicww/staging/5658/workspace/wp-content/themes/epicww/'
+alias ewwst='ewwcd && ./setup/start.sh'
 
-alias twt='timew track'
+alias sbcd='cd ~/dev/git/personal/sandbox/'
+alias sblcd='cd ~/.local/share/sandbox/logs/'
+alias sbpcd='cd ~/.local/share/sandbox/projects/'
+alias sbcl='rm -rf ~/.local/share/sandbox/logs/commands/* && rm -rf ~/.local/share/sandbox/logs/sessions/* && rm -rf ~/.local/share/sandbox/projects/*/logs/commands/* && rm -rf ~/.local/share/sandbox/projects/*/logs/sessions/*'
+
 alias tws='timew summary'
 alias twsa='timew summary :all'
 alias twsw='timew summary :week'
 alias twst='timew start'
 alias twstp='timew stop'
+alias twsr='timew retag'
+alias twts='twt -t Scale'
+alias twte='twt -t EpicWW'
 
 alias sp='spotify_player'
 
@@ -179,6 +195,50 @@ tclearsaves () {
 	command rm -rf ~/.tmux/session-saves/*
 }
 
+## twt - shorthand for timew track with relative day offsets
+## usage: twt [-t tag ...] <days_ago> <HHMM> - <days_ago> <HHMM>
+twt() {
+	local tags=()
+
+	while [[ "$1" == "-t" ]]; do
+		shift
+		while [[ $# -gt 0 && "$1" != "-t" && "$1" != "-" && ! "$1" =~ ^[0-9]+$ ]]; do
+			tags+=("$1")
+			shift
+		done
+	done
+
+	local days_start="$1"
+	local time_start="$2"
+	shift 2
+
+	[[ "$1" == "-" ]] && shift
+
+	local days_end="$1"
+	local time_end="$2"
+
+	local start end
+
+	if [[ "$days_start" -eq 0 ]]; then
+		start="$time_start"
+	else
+		start="$(date -d "-${days_start} days" +%Y%m%d)T${time_start}"
+	fi
+
+	if [[ "$days_end" -eq 0 ]]; then
+		end="$time_end"
+	else
+		end="$(date -d "-${days_end} days" +%Y%m%d)T${time_end}"
+	fi
+
+	timew track "$start" - "$end" "${tags[@]}"
+}
+
 # prompt str --------------------------------------------------
 
-PS1="$ "
+# PS1="$ "
+PS1='\[\033[38;2;255;255;255;48;2;255;40;40m\]  $ \[\033[0m\] '
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

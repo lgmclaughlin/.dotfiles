@@ -23,7 +23,7 @@ fi
 
 cp -f "$options_folder/$filename" "$current_wallpaper"
 
-if [ -x /usr/bin/waypaper ]; then
+if [ -x /usr/bin/swww ]; then
 	case ":$PATH:" in
 		*":/usr/bin:"*) ;;
 		*) export PATH="$PATH:/usr/bin" ;;
@@ -32,4 +32,4 @@ else
 	echo "Error: waybar not installed."
 	exit 1
 fi
-waypaper --wallpaper "$current_wallpaper"
+swww img "$current_wallpaper"

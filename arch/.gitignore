@@ -14,6 +14,10 @@
 .config/GIMP/
 .config/timewarrior/
 .config/vlc/
-.config/pulse/
+.config/figma-agent/
+.config/figma-linux/
+.config/libreoffice/
+.config/inkscape/
+.config/rclone/
+.wallpaper/options/claudia-andujar-hes-an-addict-3.jpg
 user-dirs.locale
-

@@ -27,7 +27,7 @@ fi
 
 # set wallpaper -----------------------------------------------
 
-if [ -x /usr/bin/waypaper ]; then
+if [ -x /usr/bin/swww ]; then
 	case ":$PATH:" in
 		*":/usr/bin:"*) ;;
 		*) export PATH="$PATH:/usr/bin" ;;
@@ -36,4 +36,4 @@ else
 	echo "Error: waybar not installed."
 	exit 1
 fi
-waypaper --wallpaper "$wallpaper"
+swww img "$wallpaper"

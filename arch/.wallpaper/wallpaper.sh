@@ -16,9 +16,9 @@ if [ ! -d "$generatedversions" ]; then
     mkdir -p "$generatedversions"
 fi
 
-waypaperrunning="$cache_folder/waypaper-running"
-if [ -f "$waypaperrunning" ]; then
-    rm "$waypaperrunning"
+swwwrunning="$cache_folder/swww-running"
+if [ -f "$swwwrunning" ]; then
+    rm "$swwwrunning"
     exit
 fi
 
