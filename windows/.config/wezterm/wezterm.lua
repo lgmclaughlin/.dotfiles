@@ -3,7 +3,7 @@ local config = wezterm.config_builder()
 
 -- shell ---------------------------------------------------------
 
-config.default_prog = { 'C:/Program Files/Git/bin/bash.exe', '--login', '-i' }
+config.default_prog = { 'bash', '--login', '-i' }
 
 -- appearance ----------------------------------------------------
 

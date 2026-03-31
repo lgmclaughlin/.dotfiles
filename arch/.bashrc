@@ -23,6 +23,7 @@ alias v='nvim'
 
 alias t='tmux'
 alias tl='tmux ls'
+alias tlc='ls /tmp/tmux-$(id -u)/'
 alias ta='tmux a'
 alias tn='tmux new -s'
 alias tat='tmux a -t'
