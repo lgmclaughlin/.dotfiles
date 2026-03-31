@@ -1,0 +1,13 @@
+[user]
+	name = lgmclaughlin
+	email = 11427888+lgmclaughlin@users.noreply.github.com
+[color]
+	ui = auto
+[init]
+	defaultBranch = main
+[diff]
+	tool = vimdiff
+[core]
+	editor = nvim
+[pull]
+	rebase = false

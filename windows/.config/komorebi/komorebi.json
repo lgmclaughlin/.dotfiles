@@ -1,0 +1,38 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/master/schema.json",
+  "app_specific_configuration_path": "$Env:USERPROFILE/applications.yaml",
+  "window_hiding_behaviour": "Cloak",
+  "cross_monitor_move_behaviour": "Insert",
+  "default_workspace_padding": 7,
+  "default_container_padding": 7,
+  "border": false,
+  "border_width": 0,
+  "focus_follows_mouse": {
+    "implementation": "Windows"
+  },
+  "mouse_follows_focus": true,
+  "monitors": [
+    {
+      "workspaces": [
+        { "name": "1", "layout": "BSP" },
+        { "name": "2", "layout": "BSP" },
+        { "name": "3", "layout": "BSP" },
+        { "name": "4", "layout": "BSP" },
+        { "name": "5", "layout": "BSP" },
+        { "name": "6", "layout": "BSP" },
+        { "name": "7", "layout": "BSP" },
+        { "name": "8", "layout": "BSP" },
+        { "name": "9", "layout": "BSP" },
+        { "name": "10", "layout": "BSP" }
+      ]
+    }
+  ],
+  "float_rules": [
+    { "kind": "Class", "id": "#32770", "comment": "Common dialog boxes" },
+    { "kind": "Title", "id": "Settings", "comment": "Windows Settings" },
+    { "kind": "Exe", "id": "Taskmgr.exe", "comment": "Task Manager" },
+    { "kind": "Exe", "id": "ScreenClippingHost.exe", "comment": "Snipping Tool" },
+    { "kind": "Exe", "id": "mstsc.exe", "comment": "Remote Desktop" },
+    { "kind": "Exe", "id": "Calculator.exe", "comment": "Calculator" }
+  ]
+}

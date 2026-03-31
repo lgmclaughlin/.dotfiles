@@ -1,0 +1,61 @@
+# whkd config — maps Hyprland keybinds to Komorebi
+# Super (Win) key is the main modifier
+
+# terminal
+.shell pwsh
+
+# app launchers ------------------------------------------------
+
+win + q                 : wezterm-gui.exe
+win + e                 : explorer.exe
+win + f                 : firefox.exe
+win + r                 : flow-launcher.exe
+
+# window management --------------------------------------------
+
+win + c                 : komorebic close
+
+# focus (hjkl)
+win + h                 : komorebic focus left
+win + j                 : komorebic focus down
+win + k                 : komorebic focus up
+win + l                 : komorebic focus right
+
+# swap windows
+win + ctrl + h          : komorebic swap left
+win + ctrl + j          : komorebic swap down
+win + ctrl + k          : komorebic swap up
+win + ctrl + l          : komorebic swap right
+
+# toggle floating
+win + v                 : komorebic toggle-float
+
+# workspaces (0-indexed) --------------------------------------
+
+# focus workspace
+win + 1                 : komorebic focus-workspace 0
+win + 2                 : komorebic focus-workspace 1
+win + 3                 : komorebic focus-workspace 2
+win + 4                 : komorebic focus-workspace 3
+win + 5                 : komorebic focus-workspace 4
+win + 6                 : komorebic focus-workspace 5
+win + 7                 : komorebic focus-workspace 6
+win + 8                 : komorebic focus-workspace 7
+win + 9                 : komorebic focus-workspace 8
+win + 0                 : komorebic focus-workspace 9
+
+# move window to workspace
+win + shift + 1         : komorebic move-to-workspace 0
+win + shift + 2         : komorebic move-to-workspace 1
+win + shift + 3         : komorebic move-to-workspace 2
+win + shift + 4         : komorebic move-to-workspace 3
+win + shift + 5         : komorebic move-to-workspace 4
+win + shift + 6         : komorebic move-to-workspace 5
+win + shift + 7         : komorebic move-to-workspace 6
+win + shift + 8         : komorebic move-to-workspace 7
+win + shift + 9         : komorebic move-to-workspace 8
+win + shift + 0         : komorebic move-to-workspace 9
+
+# lock screen (replacement for Win+L) -------------------------
+
+win + shift + l         : rundll32.exe user32.dll,LockWorkStation
