@@ -46,7 +46,7 @@ alias v='nvim'
 # TODO: remove these once PATH is unlocked by IT
 alias npm='~/scoop/apps/nodejs/current/npm'
 alias node='~/scoop/apps/nodejs/current/node'
-alias claude='~/scoop/apps/nodejs/current/claude'
+alias claude='~/scoop/persist/nodejs/bin/claude'
 
 alias gs='git status'
 alias gr='git restore'
