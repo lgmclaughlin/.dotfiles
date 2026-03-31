@@ -24,6 +24,8 @@ unset env
 
 # TODO: update username
 export PATH="$HOME/scoop/shims:$PATH"
+export PATH="$HOME/scoop/apps/nodejs/current:$PATH"
+export PATH="$HOME/scoop/persist/nodejs/bin:$PATH"
 export PATH="$PATH:$HOME/.local/bin/"
 
 # aliases -----------------------------------------------------
