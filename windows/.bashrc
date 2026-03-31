@@ -25,8 +25,8 @@ unset env
 # TODO: update username
 export PATH="$HOME/scoop/shims:$PATH"
 # git installed via official Git for Windows installer
-export PATH="/c/Program Files/Git/usr/bin:$PATH"
-export PATH="/c/Program Files/Git/bin:$PATH"
+export PATH="$HOME/AppData/Local/Programs/Git/usr/bin:$PATH"
+export PATH="$HOME/AppData/Local/Programs/Git/bin:$PATH"
 export PATH="$HOME/scoop/apps/nodejs/current:$PATH"
 export PATH="$HOME/scoop/persist/nodejs/bin:$PATH"
 export PATH="$PATH:$HOME/.local/bin/"
