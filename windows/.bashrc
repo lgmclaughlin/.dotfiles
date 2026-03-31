@@ -39,6 +39,12 @@ alias grpr='grep -r --color=auto'
 
 alias v='nvim'
 
+# scoop full paths (workaround for PATH restrictions)
+# TODO: remove these once PATH is unlocked by IT
+alias npm='~/scoop/apps/nodejs/current/npm'
+alias node='~/scoop/apps/nodejs/current/node'
+alias claude='~/scoop/apps/nodejs/current/claude'
+
 alias gs='git status'
 alias gr='git restore'
 alias grs='git restore --staged'
