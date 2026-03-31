@@ -1,0 +1,23 @@
+{
+    "name": "Matugen",
+    "foreground": "#e0e2e8",
+    "background": "#101418",
+    "selectionBackground": "#b8c8da",
+    "cursorColor": "#e0e2e8",
+    "black": "#e0e2e8",
+    "brightBlack": "#e0e2e8",
+    "red": "#ffb4ab",
+    "brightRed": "#ffb4ab",
+    "green": "#99ccfa",
+    "brightGreen": "#99ccfa",
+    "yellow": "#b8c8da",
+    "brightYellow": "#b8c8da",
+    "blue": "#d2bfe7",
+    "brightBlue": "#d2bfe7",
+    "purple": "#99ccfa",
+    "brightPurple": "#99ccfa",
+    "cyan": "#b8c8da",
+    "brightCyan": "#b8c8da",
+    "white": "#e0e2e8",
+    "brightWhite": "#e0e2e8"
+}
