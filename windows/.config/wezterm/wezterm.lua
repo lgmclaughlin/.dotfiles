@@ -7,7 +7,7 @@ config.default_prog = { 'bash', '--login', '-i' }
 
 -- appearance ----------------------------------------------------
 
-config.font = wezterm.font 'JetBrainsMono Nerd Font'
+config.font = wezterm.font 'NotoSansMono Nerd Font'
 config.font_size = 11
 
 config.color_scheme = 'Tokyo Night'
