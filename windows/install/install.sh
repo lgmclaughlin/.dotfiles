@@ -4,12 +4,15 @@
 
 set -e
 
+export MSYS=winsymlinks:nativestrict
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 WIN_DIR="$REPO_DIR/windows"
 HOME_DIR="$HOME"
 
 NVIM_TARGET="$HOME_DIR/AppData/Local/nvim"
+BAK_DIR="$SCRIPT_DIR/bak"
 
 # --- helpers --------------------------------------------------
 
@@ -29,9 +32,11 @@ link() {
 	fi
 
 	if [ -e "$dest" ] || [ -L "$dest" ]; then
-		local backup="${dest}.bak.$(date +%Y%m%d%H%M%S)"
-		echo "  BACKUP: $dest -> $backup"
-		mv "$dest" "$backup"
+		mkdir -p "$BAK_DIR"
+		local name
+		name="$(basename "$dest")-$(date +%Y%m%d%H%M%S)"
+		mv "$dest" "$BAK_DIR/$name"
+		echo "  BACKUP: $dest -> $BAK_DIR/$name"
 	fi
 
 	mkdir -p "$(dirname "$dest")"
