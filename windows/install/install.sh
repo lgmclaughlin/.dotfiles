@@ -93,6 +93,8 @@ echo "[symlinks: shell & git]"
 link "$WIN_DIR/.bashrc" "$HOME_DIR/.bashrc"
 link "$WIN_DIR/.inputrc" "$HOME_DIR/.inputrc"
 link "$WIN_DIR/.gitconfig" "$HOME_DIR/.gitconfig"
+link "$WIN_DIR/.gitconfig-personal" "$HOME_DIR/.gitconfig-personal"
+link "$WIN_DIR/.gitconfig-work" "$HOME_DIR/.gitconfig-work"
 
 echo "[symlinks: neovim]"
 link "$WIN_DIR/.config/nvim" "$NVIM_TARGET"
