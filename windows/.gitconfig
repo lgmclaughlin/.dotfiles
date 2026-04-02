@@ -1,6 +1,9 @@
-[user]
-	name = lgmclaughlin
-	email = 11427888+lgmclaughlin@users.noreply.github.com
+[includeIf "gitdir:~/dotfiles/"]
+	path = ~/.gitconfig-personal
+[includeIf "gitdir:~/Documents/repos/personal/"]
+	path = ~/.gitconfig-personal
+[includeIf "gitdir:~/Documents/projects/"]
+	path = ~/.gitconfig-work
 [color]
 	ui = auto
 [init]
