@@ -140,10 +140,8 @@ manual "Run :checkhealth to verify clipboard, treesitter, providers"
 manual "Run :Mason to install LSPs (lua_ls, cssls, omnisharp if needed)"
 echo ""
 
-echo "[key swap, required for tiling WM keybinds]"
-manual "Laptop keyboard: swap Alt and Win keys in Windows Settings or PowerToys Keyboard Manager"
+echo "[key swap]"
 manual "Mechanical keyboard: swap Alt and Win keys in VIA"
-manual "This makes Alt (physically where Win was) the tiling modifier"
 echo ""
 
 echo "[tiling WM]"
