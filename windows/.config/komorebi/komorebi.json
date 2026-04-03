@@ -5,8 +5,15 @@
   "cross_monitor_move_behaviour": "Insert",
   "default_workspace_padding": 7,
   "default_container_padding": 7,
-  "border": false,
-  "border_width": 0,
+  "border": true,
+  "border_width": 2,
+  "border_colours": {
+    "single": "#99ccfa",
+    "stack": "#d2bfe7",
+    "monocle": "#b8c8da",
+    "unfocused": "#505359"
+  },
+  "border_opacity": 0.8,
   "focus_follows_mouse": {
     "implementation": "Windows"
   },
