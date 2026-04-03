@@ -1,15 +1,14 @@
-# whkd config — maps Hyprland keybinds to Komorebi
-# Alt key is the main modifier (swap Alt/Win in Windows Settings + VIA)
+# whkd config
 
 # terminal
-.shell pwsh
+.shell cmd
 
 # app launchers ------------------------------------------------
 
 alt + q                 : wezterm-gui.exe
 alt + e                 : explorer.exe
-alt + f                 : firefox.exe
-alt + r                 : flow-launcher.exe
+alt + f                 : "C:/Users/lucas.mclaughlin.sca/AppData/Local/Mozilla Firefox/firefox.exe"
+alt + r                 : "C:/Users/lucas.mclaughlin.sca/scoop/apps/flow-launcher/2.1.1/Flow.Launcher.exe"
 
 # window management --------------------------------------------
 
