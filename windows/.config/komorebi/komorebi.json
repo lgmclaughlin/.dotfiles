@@ -1,22 +1,19 @@
 {
   "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/master/schema.json",
-  "app_specific_configuration_path": "$Env:USERPROFILE/applications.yaml",
+  "app_specific_configuration_path": "$Env:USERPROFILE/applications.json",
   "window_hiding_behaviour": "Cloak",
   "cross_monitor_move_behaviour": "Insert",
-  "default_workspace_padding": 7,
-  "default_container_padding": 7,
+  "default_workspace_padding": 10,
+  "default_container_padding": 10,
   "border": true,
   "border_width": 2,
   "border_colours": {
-    "single": "#99ccfa",
-    "stack": "#d2bfe7",
-    "monocle": "#b8c8da",
-    "unfocused": "#505359"
+    "single": "#89b4fa",
+    "stack": "#89b4fa",
+    "monocle": "#89b4fa",
+	"unfocused": "#393c4f"
   },
-  "border_opacity": 0.8,
-  "focus_follows_mouse": {
-    "implementation": "Windows"
-  },
+  "focus_follows_mouse": "Windows",
   "mouse_follows_focus": true,
   "monitors": [
     {
@@ -25,16 +22,11 @@
         { "name": "2", "layout": "BSP" },
         { "name": "3", "layout": "BSP" },
         { "name": "4", "layout": "BSP" },
-        { "name": "5", "layout": "BSP" },
-        { "name": "6", "layout": "BSP" },
-        { "name": "7", "layout": "BSP" },
-        { "name": "8", "layout": "BSP" },
-        { "name": "9", "layout": "BSP" },
-        { "name": "10", "layout": "BSP" }
+        { "name": "5", "layout": "BSP" }
       ]
     }
   ],
-  "float_rules": [
+  "ignore_rules": [
     { "kind": "Class", "id": "#32770", "comment": "Common dialog boxes" },
     { "kind": "Title", "id": "Settings", "comment": "Windows Settings" },
     { "kind": "Exe", "id": "Taskmgr.exe", "comment": "Task Manager" },

@@ -1,53 +1,183 @@
 watch_stylesheet: true
 watch_config: true
-
+debug: false
+komorebi:
+  start_command: "komorebic start --whkd"
+  stop_command: "komorebic stop --whkd"
+  reload_command: "komorebic stop --whkd && komorebic start --whkd "
 bars:
-  main:
+  primary-bar:
     enabled: true
-    screens: ['*']
+    screens: ["*"]
     class_name: "yasb-bar"
     alignment:
       position: "top"
       center: false
     blur_effect:
-      enabled: false
+      enabled: true
+      acrylic: false
+      dark_mode: true
+      round_corners: true
+      border_color: None
     window_flags:
-      always_on_top: true
+      always_on_top: false
       windows_app_bar: true
     dimensions:
       width: "100%"
-      height: 34
+      height: 40
     padding:
       top: 4
-      left: 10
-      bottom: 4
-      right: 10
+      left: 6
+      bottom: 0
+      right: 6
     widgets:
-      left:
-        - type: "yasb.widgets.active_window.ActiveWindowWidget"
-          options:
-            label: "{title}"
-            label_alt: "{title}"
-            max_length: 60
-      center:
-        - type: "yasb.widgets.komorebi.workspaces.WorkspacesWidget"
-          options:
-            label_offline: "Komorebi Offline"
-            hide_empty_workspaces: false
-      right:
-        - type: "yasb.widgets.volume.VolumeWidget"
-          options:
-            label: "\uf028 {volume}%"
-            label_alt: "\uf026 muted"
-        - type: "yasb.widgets.wifi.WifiWidget"
-          options:
-            label: "\uf1eb {wifi_name}"
-            label_alt: "\uf1eb {wifi_name} ({wifi_strength}%)"
-        - type: "yasb.widgets.battery.BatteryWidget"
-          options:
-            label: "{icon} {percent}%"
-            label_alt: "{icon} {remaining}"
-        - type: "yasb.widgets.clock.ClockWidget"
-          options:
-            label: "{%H%M_%m_%d_%y}"
-            label_alt: "{%a %b %d %Y}"
+      left: ["grouped_left"]
+      center: []
+      right: ["grouped_right"]
+
+widgets:
+  active_window:
+    type: "yasb.active_window.ActiveWindowWidget"
+    options:
+      label: "{win[title]}"
+      label_alt: "[class_name='{win[class_name]}' exe='{win[process][name]}' hwnd={win[hwnd]}]"
+      label_no_window: "..."
+      label_icon: true
+      label_icon_size: 16
+      max_length: 50
+      max_length_ellipsis: "..."
+      monitor_exclusive: false
+
+  komorebi_workspaces:
+    type: "komorebi.workspaces.WorkspaceWidget"
+    options:
+      label_offline: "\u23fc Offline"
+      label_workspace_btn: "\udb80\udd30"
+      label_workspace_active_btn: "\udb80\udd2f"
+      label_workspace_populated_btn: "\udb80\udd30"
+      label_default_name: "{index}"
+      label_zero_index: false
+      hide_empty_workspaces: false
+      hide_if_offline: true
+      animation: false
+
+  volume:
+    type: "yasb.volume.VolumeWidget"
+    options:
+      label: "<span>{icon}</span> {level}"
+      label_alt: "{level}"
+      volume_icons:
+        - "\ueee8"
+        - "\uf026"
+        - "\uf027"
+        - "\uf027"
+        - "\uf028"
+      callbacks:
+        on_left: "toggle_volume_menu"
+        on_right: "toggle_mute"
+      audio_menu:
+        blur: true
+        round_corners: true
+        round_corners_type: "normal"
+        border_color: "None"
+        alignment: "center"
+        direction: "down"
+        offset_top: 6
+        offset_left: 0
+      container_padding:
+        top: 0
+        left: 2
+        bottom: 0
+        right: 2
+
+  wifi:
+    type: "yasb.wifi.WifiWidget"
+    options:
+      label: "<span>{wifi_icon} </span>{wifi_name}"
+      label_alt: "<span>{wifi_icon} </span>{wifi_name} ({wifi_strength}%)"
+
+  battery:
+    type: "yasb.battery.BatteryWidget"
+    options:
+      label: "<span>{icon}</span> {percent}%"
+      label_alt: "<span>{icon}</span> {percent}% | time: {time_remaining}"
+      update_interval: 5000
+      time_remaining_natural: false
+      hide_unsupported: true
+    charging_options:
+      icon_format: "{charging_icon}"
+      blink_charging_icon: true
+      blink_interval: 500
+    status_thresholds:
+      critical: 10
+      low: 25
+      medium: 75
+      high: 95
+      full: 100
+    status_icons:
+      icon_charging: "\uf0e7"
+      icon_critical: "\uf244"
+      icon_low: "\uf243"
+      icon_medium: "\uf242"
+      icon_high: "\uf241"
+      icon_full: "\uf240"
+
+  power_menu:
+    type: "yasb.power_menu.PowerMenuWidget"
+    options:
+      label: "\uf011"
+      uptime: true
+      blur: false
+      blur_background: true
+      animation_duration: 200
+      button_row: 3
+      buttons:
+        shutdown: ["\uf011", "Shut Down"]
+        restart: ["\uead2", "Restart"]
+        sleep: ["\u23fe", "Sleep"]
+        cancel: ["\ueab8", "Close"]
+      container_padding:
+        top: 0
+        left: 0
+        bottom: 0
+        right: 6
+
+  clock:
+    type: "yasb.clock.ClockWidget"
+    options:
+      label: "{%y%m%dT%H%M}"
+      label_alt: "{%a %b %d %Y}"
+      timezones: []
+      calendar:
+        blur: true
+        round_corners: true
+        round_corners_type: "normal"
+        border_color: "None"
+        alignment: "center"
+        direction: "down"
+      callbacks:
+        on_left: "toggle_calendar"
+        on_right: "toggle_label"
+
+  grouped_left:
+    type: "yasb.grouper.GrouperWidget"
+    options:
+      class_name: "grouped-widgets grouped-left"
+      widgets: ["power_menu", "komorebi_workspaces", "active_window"]
+      container_padding:
+        top: 0
+        left: 2
+        bottom: 0
+        right: 6
+
+  grouped_right:
+    type: "yasb.grouper.GrouperWidget"
+    options:
+      class_name: "grouped-widgets grouped-right"
+      widgets: ["volume", "wifi", "battery", "clock"]
+      container_padding:
+        top: 0
+        left: 2
+        bottom: 0
+        right: 5
+

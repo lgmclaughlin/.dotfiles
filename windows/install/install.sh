@@ -107,12 +107,34 @@ link "$WIN_DIR/.config/wezterm" "$HOME_DIR/.config/wezterm"
 
 echo "[symlinks: komorebi]"
 link "$WIN_DIR/.config/komorebi" "$HOME_DIR/.config/komorebi"
+link "$WIN_DIR/.config/komorebi/komorebi.json" "$HOME_DIR/komorebi.json"
 
 echo "[symlinks: whkd]"
 link "$WIN_DIR/.config/whkd/whkdrc" "$HOME_DIR/.config/whkdrc"
 
 echo "[symlinks: yasb]"
 link "$WIN_DIR/.config/yasb" "$HOME_DIR/.config/yasb"
+
+echo "[symlinks: windows terminal]"
+WT_STATE=$(echo "$LOCALAPPDATA/Packages/Microsoft.WindowsTerminal_"*/LocalState 2>/dev/null | head -1 | tr '\\' '/')
+if [ -d "$WT_STATE" ]; then
+  link "$WIN_DIR/.config/windows-terminal/settings.json" "$WT_STATE/settings.json"
+else
+  echo "  SKIP (Windows Terminal Store package not found)"
+fi
+
+# --- scripts --------------------------------------------------
+
+echo ""
+echo "[scripts]"
+mkdir -p "$HOME_DIR/bin"
+for script in "$WIN_DIR/scripts/"*.sh; do
+	[ -f "$script" ] || continue
+	dest="$HOME_DIR/bin/$(basename "$script" .sh)"
+	cp "$script" "$dest"
+	chmod +x "$dest"
+	echo "  INSTALLED: $dest"
+done
 
 # --- PATH setup -----------------------------------------------
 
@@ -122,6 +144,7 @@ add_to_path "%USERPROFILE%\\scoop\\shims"
 add_to_path "%USERPROFILE%\\scoop\\apps\\nodejs\\current"
 add_to_path "%USERPROFILE%\\AppData\\Local\\Programs\\Git\\bin"
 add_to_path "%APPDATA%\\npm"
+add_to_path "%USERPROFILE%\\bin"
 
 # --- post-install manual steps --------------------------------
 
@@ -159,7 +182,26 @@ manual "Install: scoop bucket add extras && scoop install komorebi whkd yasb"
 manual "Install: scoop install wezterm"
 manual "Install: scoop install flow-launcher"
 manual "Start: komorebic start && whkd && yasb"
-manual "Add Komorebi, WHKD, and Yasb to Windows startup (shell:startup folder or Task Scheduler)"
+echo ""
+
+echo "[startup shortcuts]"
+STARTUP_DIR="$HOME_DIR/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup"
+create_shortcut() {
+	local name="$1"
+	local target="$2"
+	local args="${3:-}"
+	powershell.exe -NoProfile -Command "
+		\$ws = New-Object -ComObject WScript.Shell
+		\$s = \$ws.CreateShortcut('$STARTUP_DIR\\$name.lnk')
+		\$s.TargetPath = '$target'
+		\$s.Arguments = '$args'
+		\$s.Save()
+	" 2>/dev/null
+	echo "  SHORTCUT: $name"
+}
+create_shortcut "komorebi" "$HOME_DIR\\scoop\\shims\\komorebic.exe" "start --whkd"
+create_shortcut "yasb" "$HOME_DIR\\scoop\\shims\\yasb.exe" ""
+create_shortcut "Flow.Launcher" "$HOME_DIR\\scoop\\apps\\flow-launcher\\current\\Flow.Launcher.exe" ""
 echo ""
 
 echo "========================================"

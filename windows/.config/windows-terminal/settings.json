@@ -1,0 +1,129 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": 
+    [
+        {
+            "command": 
+            {
+                "action": "newTab",
+                "startingDirectory": "${cwd}"
+            },
+            "id": "User.newTab.B02E1036"
+        },
+        {
+            "command": 
+            {
+                "action": "closeTab"
+            },
+            "id": "User.closeTab.0"
+        }
+    ],
+    "copyFormatting": "none",
+    "copyOnSelect": false,
+    "defaultProfile": "{9b0c6fdc-1d76-4878-a148-544e632393df}",
+    "keybindings": 
+    [
+        {
+            "id": "Terminal.OpenNewTab",
+            "keys": "alt+shift+n"
+        },
+        {
+            "id": "User.newTab.B02E1036",
+            "keys": "alt+shift+m"
+        },
+        {
+            "id": "Terminal.NextTab",
+            "keys": "alt+shift+l"
+        },
+        {
+            "id": "Terminal.PrevTab",
+            "keys": "alt+shift+h"
+        },
+        {
+            "id": "Terminal.MoveTabBackward",
+            "keys": "alt+shift+["
+        },
+        {
+            "id": "User.closeTab.0",
+            "keys": "alt+shift+c"
+        },
+        {
+            "id": "Terminal.MoveTabForward",
+            "keys": "alt+shift+]"
+        }
+    ],
+    "launchMode": "focus",
+    "newTabMenu": 
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
+    "profiles": 
+    {
+        "defaults": 
+        {
+            "colorScheme": "Matugen",
+            "cursorShape": "filledBox",
+            "font": 
+            {
+                "face": "NotoSansM NF",
+                "size": 12
+            },
+            "opacity": 30,
+            "padding": "10",
+            "scrollbarState": "hidden",
+            "useAcrylic": true
+        },
+        "list": 
+        [
+            {
+                "commandline": "%LOCALAPPDATA%\\Programs\\Git\\bin\\bash.exe --login -i",
+                "guid": "{9b0c6fdc-1d76-4878-a148-544e632393df}",
+                "hidden": false,
+                "icon": "%LOCALAPPDATA%\\Programs\\Git\\mingw64\\share\\git\\git-for-windows.ico",
+                "name": "Git Bash",
+                "opacity": 31,
+                "startingDirectory": "%USERPROFILE%"
+            },
+            {
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": false,
+                "name": "Windows PowerShell"
+            },
+            {
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "hidden": false,
+                "name": "Command Prompt"
+            }
+        ]
+    },
+    "schemes": 
+    [
+        {
+            "background": "#101418",
+            "black": "#E0E2E8",
+            "blue": "#D2BFE7",
+            "brightBlack": "#E0E2E8",
+            "brightBlue": "#D2BFE7",
+            "brightCyan": "#B8C8DA",
+            "brightGreen": "#99CCFA",
+            "brightPurple": "#99CCFA",
+            "brightRed": "#FFB4AB",
+            "brightWhite": "#E0E2E8",
+            "brightYellow": "#B8C8DA",
+            "cursorColor": "#E0E2E8",
+            "cyan": "#B8C8DA",
+            "foreground": "#E0E2E8",
+            "green": "#99CCFA",
+            "name": "Matugen",
+            "purple": "#99CCFA",
+            "red": "#FFB4AB",
+            "selectionBackground": "#B8C8DA",
+            "white": "#E0E2E8",
+            "yellow": "#B8C8DA"
+        }
+    ],
+    "themes": []
+}
