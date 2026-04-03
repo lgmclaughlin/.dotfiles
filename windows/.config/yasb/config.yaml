@@ -1,0 +1,53 @@
+watch_stylesheet: true
+watch_config: true
+
+bars:
+  main:
+    enabled: true
+    screens: ['*']
+    class_name: "yasb-bar"
+    alignment:
+      position: "top"
+      center: false
+    blur_effect:
+      enabled: false
+    window_flags:
+      always_on_top: true
+      windows_app_bar: true
+    dimensions:
+      width: "100%"
+      height: 34
+    padding:
+      top: 4
+      left: 10
+      bottom: 4
+      right: 10
+    widgets:
+      left:
+        - type: "yasb.widgets.active_window.ActiveWindowWidget"
+          options:
+            label: "{title}"
+            label_alt: "{title}"
+            max_length: 60
+      center:
+        - type: "yasb.widgets.komorebi.workspaces.WorkspacesWidget"
+          options:
+            label_offline: "Komorebi Offline"
+            hide_empty_workspaces: false
+      right:
+        - type: "yasb.widgets.volume.VolumeWidget"
+          options:
+            label: "\uf028 {volume}%"
+            label_alt: "\uf026 muted"
+        - type: "yasb.widgets.wifi.WifiWidget"
+          options:
+            label: "\uf1eb {wifi_name}"
+            label_alt: "\uf1eb {wifi_name} ({wifi_strength}%)"
+        - type: "yasb.widgets.battery.BatteryWidget"
+          options:
+            label: "{icon} {percent}%"
+            label_alt: "{icon} {remaining}"
+        - type: "yasb.widgets.clock.ClockWidget"
+          options:
+            label: "{%H%M_%m_%d_%y}"
+            label_alt: "{%a %b %d %Y}"

@@ -111,6 +111,9 @@ link "$WIN_DIR/.config/komorebi" "$HOME_DIR/.config/komorebi"
 echo "[symlinks: whkd]"
 link "$WIN_DIR/.config/whkd/whkdrc" "$HOME_DIR/.config/whkdrc"
 
+echo "[symlinks: yasb]"
+link "$WIN_DIR/.config/yasb" "$HOME_DIR/.config/yasb"
+
 # --- PATH setup -----------------------------------------------
 
 echo ""
