@@ -109,7 +109,7 @@ echo "[symlinks: komorebi]"
 link "$WIN_DIR/.config/komorebi" "$HOME_DIR/.config/komorebi"
 
 echo "[symlinks: whkd]"
-link "$WIN_DIR/.config/whkd" "$HOME_DIR/.config/whkd"
+link "$WIN_DIR/.config/whkd/whkdrc" "$HOME_DIR/.config/whkdrc"
 
 # --- PATH setup -----------------------------------------------
 
@@ -152,11 +152,11 @@ manual "Mechanical keyboard: swap Alt and Win keys in VIA"
 echo ""
 
 echo "[tiling WM]"
-manual "Install: scoop bucket add extras && scoop install komorebi whkd"
+manual "Install: scoop bucket add extras && scoop install komorebi whkd yasb"
 manual "Install: scoop install wezterm"
 manual "Install: scoop install flow-launcher"
-manual "Start: komorebic start && whkd"
-manual "Add Komorebi + WHKD to Windows startup (shell:startup folder or Task Scheduler)"
+manual "Start: komorebic start && whkd && yasb"
+manual "Add Komorebi, WHKD, and Yasb to Windows startup (shell:startup folder or Task Scheduler)"
 echo ""
 
 echo "========================================"
