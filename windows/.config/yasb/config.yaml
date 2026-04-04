@@ -96,6 +96,18 @@ widgets:
       label: "<span>{wifi_icon} </span>{wifi_name}"
       label_alt: "<span>{wifi_icon} </span>{wifi_name} ({wifi_strength}%)"
 
+  bluetooth:
+    type: "yasb.bluetooth.BluetoothWidget"
+    options:
+      label: "<span>{icon}</span>"
+      label_no_device: ""
+      icons:
+        bluetooth_on: "\udb80\udcaf"
+        bluetooth_off: "\udb80\udcb2"
+        bluetooth_connected: "\udb80\udcb1"
+      callbacks:
+        on_left: "exec cmd.exe /c start ms-settings:bluetooth"
+
   battery:
     type: "yasb.battery.BatteryWidget"
     options:
@@ -174,7 +186,7 @@ widgets:
     type: "yasb.grouper.GrouperWidget"
     options:
       class_name: "grouped-widgets grouped-right"
-      widgets: ["volume", "wifi", "battery", "clock"]
+      widgets: ["bluetooth", "volume", "wifi", "battery", "clock"]
       container_padding:
         top: 0
         left: 2

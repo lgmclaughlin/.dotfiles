@@ -47,6 +47,11 @@ alias grpr='grep -r --color=auto'
 
 alias v='nvim'
 
+alias p='pandoc -f markdown+hard_line_breaks'
+
+alias tz='tar -a -c -f'
+alias tgz='tar -zcvf'
+
 # scoop full paths (workaround for PATH restrictions)
 # TODO: remove these once PATH is unlocked by IT
 alias npm='~/scoop/apps/nodejs/current/npm'
@@ -169,6 +174,20 @@ twt() {
 	fi
 
 	timew track "$start" - "$end" "${tags[@]}"
+}
+
+# zellij session management ----------------------------------
+
+zln() {
+	if [ -z "$1" ]; then
+		echo "Usage: zln <session_name>"
+		return 1
+	fi
+	zellij attach --create "$1"
+}
+
+zll() {
+	zellij list-sessions 2>/dev/null || echo "No active zellij sessions"
 }
 
 # prompt str --------------------------------------------------

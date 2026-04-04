@@ -199,12 +199,32 @@
 }
 
 .volume-widget .icon {
-    color: var(--sky);
+    color: var(--blue);
     margin: 1px 2px 0 0;
 }
 
 .volume-widget .label {
-    color: var(--sky);
+    color: var(--text);
+    margin: 1px 2px 0 0;
+}
+
+.battery-widget .icon {
+    color: var(--blue);
+    margin: 1px 2px 0 0;
+}
+
+.battery-widget .label {
+    color: var(--text);
+    margin: 1px 2px 0 0;
+}
+
+.bluetooth-widget .icon {
+    color: var(--blue);
+    margin: 1px 2px 0 0;
+}
+
+.bluetooth-widget .label {
+    color: var(--text);
     margin: 1px 2px 0 0;
 }
 

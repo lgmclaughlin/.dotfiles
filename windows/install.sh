@@ -7,7 +7,7 @@ set -e
 export MSYS=winsymlinks:nativestrict
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
+REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 WIN_DIR="$REPO_DIR/windows"
 HOME_DIR="$HOME"
 
@@ -102,9 +102,6 @@ link "$WIN_DIR/.config/nvim" "$NVIM_TARGET"
 echo "[symlinks: fastfetch]"
 link "$WIN_DIR/.config/fastfetch" "$HOME_DIR/.config/fastfetch"
 
-echo "[symlinks: wezterm]"
-link "$WIN_DIR/.config/wezterm" "$HOME_DIR/.config/wezterm"
-
 echo "[symlinks: komorebi]"
 link "$WIN_DIR/.config/komorebi" "$HOME_DIR/.config/komorebi"
 link "$WIN_DIR/.config/komorebi/komorebi.json" "$HOME_DIR/komorebi.json"
@@ -114,6 +111,11 @@ link "$WIN_DIR/.config/whkd/whkdrc" "$HOME_DIR/.config/whkdrc"
 
 echo "[symlinks: yasb]"
 link "$WIN_DIR/.config/yasb" "$HOME_DIR/.config/yasb"
+
+echo "[symlinks: zellij]"
+mkdir -p "$APPDATA/Zellij/config"
+link "$WIN_DIR/.config/zellij/config.kdl" "$APPDATA/Zellij/config/config.kdl"
+link "$WIN_DIR/.config/zellij/layouts" "$APPDATA/Zellij/config/layouts"
 
 echo "[symlinks: windows terminal]"
 WT_STATE=$(echo "$LOCALAPPDATA/Packages/Microsoft.WindowsTerminal_"*/LocalState 2>/dev/null | head -1 | tr '\\' '/')
@@ -135,6 +137,12 @@ for script in "$WIN_DIR/scripts/"*.sh; do
 	chmod +x "$dest"
 	echo "  INSTALLED: $dest"
 done
+for script in "$WIN_DIR/scripts/"*.bat; do
+	[ -f "$script" ] || continue
+	dest="$HOME_DIR/bin/$(basename "$script")"
+	cp "$script" "$dest"
+	echo "  INSTALLED: $dest"
+done
 
 # --- PATH setup -----------------------------------------------
 
@@ -150,14 +158,8 @@ add_to_path "%USERPROFILE%\\bin"
 
 echo ""
 echo "[terminal setup]"
-manual "Windows Terminal > Settings > Add New Profile > Git Bash"
-manual "  Command line: C:/Users/<username>/AppData/Local/Programs/Git/bin/bash.exe --login -i"
-manual "  Starting directory: %USERPROFILE%"
-manual "  Set as default profile"
-manual "  Appearance > Font: NotoSansMono Nerd Font"
-manual "  Appearance > Color scheme: add Matugen from windows/.config/windows-terminal/matugen-scheme.json"
-manual "  Appearance > Transparency: adjust opacity to taste"
-manual "  Settings JSON > add: \"launchMode\": \"focus\""
+manual "Install Windows Terminal from Microsoft Store if not present"
+manual "Settings are managed via symlink — no manual configuration needed"
 echo ""
 
 echo "[ssh setup]"
@@ -178,10 +180,9 @@ manual "Mechanical keyboard: swap Alt and Win keys in VIA"
 echo ""
 
 echo "[tiling WM]"
-manual "Install: scoop bucket add extras && scoop install komorebi whkd yasb"
-manual "Install: scoop install wezterm"
+manual "Install: scoop bucket add extras && scoop install komorebi whkd yasb zellij"
 manual "Install: scoop install flow-launcher"
-manual "Start: komorebic start && whkd && yasb"
+manual "Start: komorebic start --whkd && yasb"
 echo ""
 
 echo "[startup shortcuts]"

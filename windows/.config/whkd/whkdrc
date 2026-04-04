@@ -21,10 +21,10 @@ alt + k                 : komorebic focus up
 alt + l                 : komorebic focus right
 
 # swap windows
-alt + ctrl + h          : komorebic swap left
-alt + ctrl + j          : komorebic swap down
-alt + ctrl + k          : komorebic swap up
-alt + ctrl + l          : komorebic swap right
+alt + ctrl + h          : komorebic move left
+alt + ctrl + j          : komorebic move down
+alt + ctrl + k          : komorebic move up
+alt + ctrl + l          : komorebic move right
 
 # toggle floating
 alt + v                 : komorebic toggle-float

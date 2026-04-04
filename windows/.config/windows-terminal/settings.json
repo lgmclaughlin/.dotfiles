@@ -1,58 +1,11 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": 
-    [
-        {
-            "command": 
-            {
-                "action": "newTab",
-                "startingDirectory": "${cwd}"
-            },
-            "id": "User.newTab.B02E1036"
-        },
-        {
-            "command": 
-            {
-                "action": "closeTab"
-            },
-            "id": "User.closeTab.0"
-        }
-    ],
+    "actions": [],
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{9b0c6fdc-1d76-4878-a148-544e632393df}",
-    "keybindings": 
-    [
-        {
-            "id": "Terminal.OpenNewTab",
-            "keys": "alt+shift+n"
-        },
-        {
-            "id": "User.newTab.B02E1036",
-            "keys": "alt+shift+m"
-        },
-        {
-            "id": "Terminal.NextTab",
-            "keys": "alt+shift+l"
-        },
-        {
-            "id": "Terminal.PrevTab",
-            "keys": "alt+shift+h"
-        },
-        {
-            "id": "Terminal.MoveTabBackward",
-            "keys": "alt+shift+["
-        },
-        {
-            "id": "User.closeTab.0",
-            "keys": "alt+shift+c"
-        },
-        {
-            "id": "Terminal.MoveTabForward",
-            "keys": "alt+shift+]"
-        }
-    ],
+    "keybindings": [],
     "launchMode": "focus",
     "newTabMenu": 
     [

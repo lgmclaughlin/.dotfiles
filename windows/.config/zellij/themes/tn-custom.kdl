@@ -1,0 +1,15 @@
+themes {
+    tn-custom {
+        fg 205 214 244
+        bg 26 27 38
+        black 40 41 54
+        red 247 118 142
+        green 137 180 250
+        yellow 224 175 104
+        blue 255 0 0
+        magenta 187 154 247
+        cyan 125 207 255
+        white 205 214 244
+        orange 255 158 100
+    }
+}
