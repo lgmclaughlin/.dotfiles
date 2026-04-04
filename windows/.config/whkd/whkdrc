@@ -8,6 +8,7 @@
 alt + q                 : wt.exe
 alt + e                 : explorer.exe
 alt + f                 : "C:/Users/lucas.mclaughlin.sca/AppData/Local/Mozilla Firefox/firefox.exe"
+alt + g                 : "C:/Program Files/Google/Chrome/Application/chrome.exe"
 alt + r                 : "C:/Users/lucas.mclaughlin.sca/scoop/apps/flow-launcher/2.1.1/Flow.Launcher.exe"
 
 # window management --------------------------------------------

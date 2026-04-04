@@ -208,6 +208,79 @@
     margin: 1px 2px 0 0;
 }
 
+.volume-widget .icon {
+	color: #74b0ff;;
+	margin:0 2px 0 0;
+}
+.audio-menu {
+    background-color: #1c263133;
+    min-width: 300px;
+    max-width: 350px;
+}
+/* System volume */
+.audio-menu .system-volume-container {
+	margin: 20px 0 10px;
+}
+.audio-menu .system-volume-container .volume-slider {
+    border: none;
+}
+/* Device list styles */
+.audio-menu .audio-container .device {
+    background-color:transparent;
+    border: none;
+    padding:6px 8px 6px 4px;
+    margin: 6px 0;
+	height: 32px;
+    font-size: 14px;
+	text-align: left;
+    border-radius: 4px;
+}
+.audio-menu .audio-container .device.selected {
+    background-color: rgba(255, 255, 255, 0.085);
+   
+}
+.audio-menu .audio-container .device:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+}
+/* Toggle button for application volumes (if is enabled) */
+.audio-menu .toggle-apps {
+    background-color: transparent;
+    border: none;
+    padding: 0 4px 0 0;
+    margin: 0 0 0 16px;
+    min-height: 24px;
+    min-width: 24px;
+    border-radius: 4px;
+}
+.audio-menu .toggle-apps.expanded {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.audio-menu .toggle-apps:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    
+}
+/* Container for application volumes (if is enabled) */
+.audio-menu .apps-container {
+    padding: 8px 18px 8px 8px;
+    margin-top:20px;
+    border-radius: 8px;
+    background-color:rgba(255, 255, 255, 0.062)
+}
+.audio-menu .apps-container .app-volume {
+	padding: 4px 0;
+}
+.audio-menu .apps-container .app-volume .app-icon-container {
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+    border-radius: 6px;
+    margin-right: 8px;
+}
+.audio-menu .apps-container .app-volume .app-icon-container:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
 .battery-widget .icon {
     color: var(--blue);
     margin: 1px 2px 0 0;

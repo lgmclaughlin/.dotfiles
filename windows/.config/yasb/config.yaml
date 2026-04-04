@@ -74,16 +74,18 @@ widgets:
         - "\uf028"
       callbacks:
         on_left: "toggle_volume_menu"
-        on_right: "toggle_mute"
+        on_right: "exec cmd.exe /c start ms-settings:sound"
       audio_menu:
         blur: true
         round_corners: true
         round_corners_type: "normal"
         border_color: "None"
-        alignment: "center"
+        alignment: "left"
         direction: "down"
         offset_top: 6
         offset_left: 0
+        show_apps: true
+        show_apps_expanded: true
       container_padding:
         top: 0
         left: 2
@@ -95,6 +97,8 @@ widgets:
     options:
       label: "<span>{wifi_icon} </span>{wifi_name}"
       label_alt: "<span>{wifi_icon} </span>{wifi_name} ({wifi_strength}%)"
+      callbacks:
+        on_left: "exec cmd.exe /c start ms-settings:network-wifi"
 
   bluetooth:
     type: "yasb.bluetooth.BluetoothWidget"
@@ -116,6 +120,8 @@ widgets:
       update_interval: 5000
       time_remaining_natural: false
       hide_unsupported: true
+      callbacks:
+        on_left: "exec cmd.exe /c start ms-settings:battery"
     charging_options:
       icon_format: "{charging_icon}"
       blink_charging_icon: true

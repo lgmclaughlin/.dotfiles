@@ -24,15 +24,14 @@ unset env
 
 # export ------------------------------------------------------
 
-# TODO: update username
 export PATH="$HOME/scoop/shims:$PATH"
-# git installed via official Git for Windows installer
 export PATH="$HOME/AppData/Local/Programs/Git/usr/bin:$PATH"
 export PATH="$HOME/AppData/Local/Programs/Git/bin:$PATH"
 export SHELL="$HOME/AppData/Local/Programs/Git/bin/bash.exe"
 export PATH="$HOME/scoop/apps/nodejs/current:$PATH"
 export PATH="$HOME/scoop/persist/nodejs/bin:$PATH"
 export PATH="$PATH:$HOME/.local/bin/"
+export PATH="$PATH:$LOCALAPPDATA/cframe/bin/"
 
 # aliases -----------------------------------------------------
 
@@ -44,6 +43,8 @@ alias lstg='eza -a --tree --git-ignore --group-directories-first'
 
 alias grp='grep --color=auto'
 alias grpr='grep -r --color=auto'
+
+alias tk='taskkill //f //im'
 
 alias v='nvim'
 
@@ -190,8 +191,36 @@ zll() {
 	zellij list-sessions 2>/dev/null || echo "No active zellij sessions"
 }
 
+zlc() {
+	local session="${1:-main}"
+	local cache_dir="$LOCALAPPDATA/Zellij/cache/contract_version_1/session_info/$session"
+	if [ -d "$cache_dir" ]; then
+		zellij kill-session "$session" 2>/dev/null
+		rm -rf "$cache_dir"
+		echo "Cleared cache for session: $session"
+	else
+		echo "No cache found for session: $session"
+	fi
+}
+
 # prompt str --------------------------------------------------
 
+nvim() {
+    if [ -n "$ZELLIJ" ] && [ -n "$1" ]; then
+        (zellij action rename-tab "${1##*/}" &>/dev/null &)
+    fi
+    command nvim "$@"
+}
+
+_zellij_rename_tab() {
+    if [ -n "$ZELLIJ" ]; then
+        local name="${PWD##*/}"
+        [ "$PWD" = "$HOME" ] && name="~"
+        (zellij action rename-tab "$name" &>/dev/null &)
+    fi
+}
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }_zellij_rename_tab"
+_zellij_rename_tab
 PS1='\[\033[38;2;255;255;255;48;2;255;40;40m\]  $ \[\033[0m\] '
 
 # fnm (fast node manager) ------------------------------------
