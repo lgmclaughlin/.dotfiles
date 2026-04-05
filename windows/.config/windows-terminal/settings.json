@@ -15,8 +15,9 @@
     ],
     "profiles": 
     {
-        "defaults": 
+        "defaults":
         {
+            "bellStyle": "none",
             "colorScheme": "Matugen",
             "cursorShape": "filledBox",
             "font": 
