@@ -911,6 +911,62 @@ require("lazy").setup({
 	--
 	--  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
 	{ import = "custom.plugins" },
+
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+		ft = { "markdown" },
+		opts = {
+			heading = {
+				backgrounds = {
+					"RenderMarkdownH1Bg",
+					"RenderMarkdownH2Bg",
+					"RenderMarkdownH3Bg",
+					"RenderMarkdownH4Bg",
+					"RenderMarkdownH5Bg",
+					"RenderMarkdownH6Bg",
+				},
+				left_pad = { 0, 1, 2, 3, 4, 5 },
+				width = { "full", "full", "block", "block", "block", "block" },
+			},
+			code = {
+				highlight = "RenderMarkdownCode",
+				width = "block",
+			},
+		},
+		config = function(_, opts)
+			require("render-markdown").setup(opts)
+			-- Tokyo Night heading foregrounds
+			vim.api.nvim_set_hl(0, "RenderMarkdownH1", { fg = "#ffffff", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH2", { fg = "#c8cff0", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH3", { fg = "#e07898", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH4", { fg = "#e07898", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH5", { fg = "#e07898", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH6", { fg = "#e07898", bold = true })
+			-- Subtle heading background strips
+			vim.api.nvim_set_hl(0, "RenderMarkdownH1Bg", { bg = "#2d1e24", fg = "#ffffff", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", { bg = "#2a1d22", fg = "#c8cff0", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH3Bg", { bg = "#251a1f", fg = "#e07898", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH4Bg", { bg = "#251a1f", fg = "#e07898", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH5Bg", { bg = "#251a1f", fg = "#e07898", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH6Bg", { bg = "#251a1f", fg = "#e07898", bold = true })
+			-- Code blocks
+			vim.api.nvim_set_hl(0, "RenderMarkdownCode", { bg = "#282936" })
+			vim.api.nvim_set_hl(0, "RenderMarkdownCodeInline", { bg = "#28293655", fg = "#bbbdcc" })
+			-- Misc
+			vim.api.nvim_set_hl(0, "RenderMarkdownBullet", { fg = "#7aa2f7" })
+			vim.api.nvim_set_hl(0, "RenderMarkdownQuote", { fg = "#bb9af7", italic = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownLink", { fg = "#7dcfff", underline = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownChecked", { fg = "#9ece6a" })
+			vim.api.nvim_set_hl(0, "RenderMarkdownUnchecked", { fg = "#565f89" })
+			vim.api.nvim_set_hl(0, "RenderMarkdownTableHead", { fg = "#7aa2f7", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownTableRow", { fg = "#c0caf5" })
+		end,
+		keys = {
+			{ "<leader>m", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle Markdown Render" },
+		},
+	},
+
 	--
 	-- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
 	-- Or use telescope!

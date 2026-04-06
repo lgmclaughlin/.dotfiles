@@ -112,6 +112,9 @@ link "$WIN_DIR/.config/whkd/whkdrc" "$HOME_DIR/.config/whkdrc"
 echo "[symlinks: yasb]"
 link "$WIN_DIR/.config/yasb" "$HOME_DIR/.config/yasb"
 
+echo "[symlinks: glow]"
+link "$WIN_DIR/.config/glow/glow.yml" "$LOCALAPPDATA/glow/Config/glow.yml"
+
 echo "[symlinks: zellij]"
 mkdir -p "$APPDATA/Zellij/config"
 link "$WIN_DIR/.config/zellij/config.kdl" "$APPDATA/Zellij/config/config.kdl"
