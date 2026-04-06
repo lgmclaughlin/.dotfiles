@@ -952,7 +952,7 @@ require("lazy").setup({
 			vim.api.nvim_set_hl(0, "RenderMarkdownH6Bg", { bg = "#251a1f", fg = "#e07898", bold = true })
 			-- Code blocks
 			vim.api.nvim_set_hl(0, "RenderMarkdownCode", { bg = "#282936" })
-			vim.api.nvim_set_hl(0, "RenderMarkdownCodeInline", { bg = "#28293655", fg = "#bbbdcc" })
+			vim.api.nvim_set_hl(0, "RenderMarkdownCodeInline", { bg = "#282936", fg = "#bbbdcc" })
 			-- Misc
 			vim.api.nvim_set_hl(0, "RenderMarkdownBullet", { fg = "#7aa2f7" })
 			vim.api.nvim_set_hl(0, "RenderMarkdownQuote", { fg = "#bb9af7", italic = true })

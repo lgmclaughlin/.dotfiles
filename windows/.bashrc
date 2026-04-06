@@ -177,6 +177,16 @@ twt() {
 	timew track "$start" - "$end" "${tags[@]}"
 }
 
+present() {
+	local md="$1"
+	local tmp
+	tmp=$(mktemp /tmp/present_XXXXXX.docx)
+	awk '/^\|/ && prev != "" && prev !~ /^\|/ { print "" } { print; prev = $0 }' "$md" \
+		| pandoc -f markdown -o "$tmp" --wrap=none --columns=200
+	powershell.exe -NoProfile -Command "Start-Process -FilePath '$(cygpath -w "$tmp")' -Wait"
+	rm -f "$tmp"
+}
+
 # zellij session management ----------------------------------
 
 zln() {
