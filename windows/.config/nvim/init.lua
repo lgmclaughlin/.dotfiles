@@ -917,6 +917,7 @@ require("lazy").setup({
 		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
 		ft = { "markdown" },
 		opts = {
+			enabled = false,
 			heading = {
 				backgrounds = {
 					"RenderMarkdownH1Bg",
@@ -937,19 +938,19 @@ require("lazy").setup({
 		config = function(_, opts)
 			require("render-markdown").setup(opts)
 			-- Tokyo Night heading foregrounds
-			vim.api.nvim_set_hl(0, "RenderMarkdownH1", { fg = "#ffffff", bold = true })
-			vim.api.nvim_set_hl(0, "RenderMarkdownH2", { fg = "#c8cff0", bold = true })
-			vim.api.nvim_set_hl(0, "RenderMarkdownH3", { fg = "#e07898", bold = true })
-			vim.api.nvim_set_hl(0, "RenderMarkdownH4", { fg = "#e07898", bold = true })
-			vim.api.nvim_set_hl(0, "RenderMarkdownH5", { fg = "#e07898", bold = true })
-			vim.api.nvim_set_hl(0, "RenderMarkdownH6", { fg = "#e07898", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH1", { fg = "#2d1e24", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH2", { fg = "#2a1d22", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH3", { fg = "#251a1f", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH4", { fg = "#251a1f", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH5", { fg = "#251a1f", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH6", { fg = "#251a1f", bold = true })
 			-- Subtle heading background strips
-			vim.api.nvim_set_hl(0, "RenderMarkdownH1Bg", { bg = "#2d1e24", fg = "#ffffff", bold = true })
-			vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", { bg = "#2a1d22", fg = "#c8cff0", bold = true })
-			vim.api.nvim_set_hl(0, "RenderMarkdownH3Bg", { bg = "#251a1f", fg = "#e07898", bold = true })
-			vim.api.nvim_set_hl(0, "RenderMarkdownH4Bg", { bg = "#251a1f", fg = "#e07898", bold = true })
-			vim.api.nvim_set_hl(0, "RenderMarkdownH5Bg", { bg = "#251a1f", fg = "#e07898", bold = true })
-			vim.api.nvim_set_hl(0, "RenderMarkdownH6Bg", { bg = "#251a1f", fg = "#e07898", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH1Bg", { bg = "#ffffff", fg = "#2d1e24", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", { bg = "#c8cff0", fg = "#2a1d22", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH3Bg", { bg = "#e07898", fg = "#251a1f", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH4Bg", { bg = "#e07898", fg = "#251a1f", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH5Bg", { bg = "#e07898", fg = "#251a1f", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH6Bg", { bg = "#e07898", fg = "#251a1f", bold = true })
 			-- Code blocks
 			vim.api.nvim_set_hl(0, "RenderMarkdownCode", { bg = "#282936" })
 			vim.api.nvim_set_hl(0, "RenderMarkdownCodeInline", { bg = "#282936", fg = "#bbbdcc" })
@@ -961,9 +962,17 @@ require("lazy").setup({
 			vim.api.nvim_set_hl(0, "RenderMarkdownUnchecked", { fg = "#565f89" })
 			vim.api.nvim_set_hl(0, "RenderMarkdownTableHead", { fg = "#7aa2f7", bold = true })
 			vim.api.nvim_set_hl(0, "RenderMarkdownTableRow", { fg = "#c0caf5" })
+			vim.api.nvim_set_hl(0, "MarkdownBackground", { bg = "#1a1b26" })
 		end,
 		keys = {
-			{ "<leader>m", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle Markdown Render" },
+			{ "<leader>m", function()
+				vim.cmd("RenderMarkdown toggle")
+				if vim.wo.winhl == "" then
+					vim.wo.winhl = "Normal:MarkdownBackground"
+				else
+					vim.wo.winhl = ""
+				end
+			end, desc = "Toggle Markdown Render" },
 		},
 	},
 
