@@ -90,6 +90,10 @@ alias twsr='timew retag'
 alias twts='twt -t Scale'
 alias twte='twt -t EpicWW'
 
+alias cr='claude --resume'
+alias cm='claude --model claude-opus-4-5-20251101'
+alias cmr='claude --model claude-opus-4-5-20251101 --resume'
+
 # autorun -----------------------------------------------------
 
 fastfetch

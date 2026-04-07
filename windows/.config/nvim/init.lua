@@ -934,6 +934,10 @@ require("lazy").setup({
 				highlight = "RenderMarkdownCode",
 				width = "block",
 			},
+			bold = {
+				enabled = true,
+				highlight = "RenderMarkdownBold",
+			},
 		},
 		config = function(_, opts)
 			require("render-markdown").setup(opts)
@@ -946,15 +950,20 @@ require("lazy").setup({
 			vim.api.nvim_set_hl(0, "RenderMarkdownH6", { fg = "#251a1f", bold = true })
 			-- Subtle heading background strips
 			vim.api.nvim_set_hl(0, "RenderMarkdownH1Bg", { bg = "#ffffff", fg = "#2d1e24", bold = true })
-			vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", { bg = "#c8cff0", fg = "#2a1d22", bold = true })
-			vim.api.nvim_set_hl(0, "RenderMarkdownH3Bg", { bg = "#e07898", fg = "#251a1f", bold = true })
-			vim.api.nvim_set_hl(0, "RenderMarkdownH4Bg", { bg = "#e07898", fg = "#251a1f", bold = true })
-			vim.api.nvim_set_hl(0, "RenderMarkdownH5Bg", { bg = "#e07898", fg = "#251a1f", bold = true })
-			vim.api.nvim_set_hl(0, "RenderMarkdownH6Bg", { bg = "#e07898", fg = "#251a1f", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", { bg = "#e07898", fg = "#2a1d22", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH3Bg", { bg = "#ff2828", fg = "#ffffff", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH4Bg", { bg = "#ff2828", fg = "#ffffff", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH5Bg", { bg = "#ff2828", fg = "#ffffff", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH6Bg", { bg = "#ff2828", fg = "#ffffff", bold = true })
 			-- Code blocks
 			vim.api.nvim_set_hl(0, "RenderMarkdownCode", { bg = "#282936" })
 			vim.api.nvim_set_hl(0, "RenderMarkdownCodeInline", { bg = "#282936", fg = "#bbbdcc" })
 			-- Misc
+			vim.api.nvim_set_hl(0, "RenderMarkdownBold", { fg = "#7dcfff", bold = true })
+			vim.api.nvim_set_hl(0, "@markup.strong", { fg = "#7dcfff", bold = true })
+			vim.api.nvim_set_hl(0, "@markup.strong.markdown_inline", { fg = "#7dcfff", bold = true })
+			vim.api.nvim_set_hl(0, "@markup.italic", { fg = "#e0af68", italic = true })
+			vim.api.nvim_set_hl(0, "@markup.italic.markdown_inline", { fg = "#e0af68", italic = true })
 			vim.api.nvim_set_hl(0, "RenderMarkdownBullet", { fg = "#7aa2f7" })
 			vim.api.nvim_set_hl(0, "RenderMarkdownQuote", { fg = "#bb9af7", italic = true })
 			vim.api.nvim_set_hl(0, "RenderMarkdownLink", { fg = "#7dcfff", underline = true })
@@ -965,14 +974,18 @@ require("lazy").setup({
 			vim.api.nvim_set_hl(0, "MarkdownBackground", { bg = "#1a1b26" })
 		end,
 		keys = {
-			{ "<leader>m", function()
-				vim.cmd("RenderMarkdown toggle")
-				if vim.wo.winhl == "" then
-					vim.wo.winhl = "Normal:MarkdownBackground"
-				else
-					vim.wo.winhl = ""
-				end
-			end, desc = "Toggle Markdown Render" },
+			{
+				"<leader>m",
+				function()
+					vim.cmd("RenderMarkdown toggle")
+					if vim.wo.winhl == "" then
+						vim.wo.winhl = "Normal:MarkdownBackground"
+					else
+						vim.wo.winhl = ""
+					end
+				end,
+				desc = "Toggle Markdown Render",
+			},
 		},
 	},
 
