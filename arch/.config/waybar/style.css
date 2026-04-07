@@ -59,34 +59,37 @@ window#waybar {
 }
 
 #workspaces button {
+    color: @textcolor2;
+    background: #ffffff; 
+    opacity: 0.6;
     padding: 0px 2px;
     margin: 0px 2px;
     border-radius: 15px;
-    color: @textcolor2;
-    background-color: @workspacesbackground2; 
     transition: all 0.3s ease-in-out;
-    opacity: 0.4;
     font-size: 0px;
+}
+
+#workspaces button.empty {
+    background-color: @workspacesbackground2; 
+    opacity: 0.4;
 }
 
 #workspaces button.active {
     color: @on_primary;
     background-color: @workspacesbackground1;
-    border-radius: 15px;
-    min-width: 52px;
     background-size: 400% 400%;
-    transition: all 0.3s ease-in-out;
 	opacity: 0.8;
+    min-width: 52px;
     border: 2pt solid @bordercolor;
+    transition: all 0.3s ease-in-out;
 }
 
 #workspaces button:hover {
     color: @on_secondary;
     background: #ffffff;
-    opacity: 1;
-    border-radius: 15px;
-    min-width: 45px;
     background-size: 400% 400%;
+    opacity: 1;
+    min-width: 45px;
 }
 
 /* tooltip ----------------------------------------------------- */
