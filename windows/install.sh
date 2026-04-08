@@ -96,23 +96,19 @@ link "$WIN_DIR/.gitconfig" "$HOME_DIR/.gitconfig"
 link "$WIN_DIR/.gitconfig-personal" "$HOME_DIR/.gitconfig-personal"
 link "$WIN_DIR/.gitconfig-work" "$HOME_DIR/.gitconfig-work"
 
-echo "[symlinks: neovim]"
+echo "[symlinks: .config (blanket)]"
+link "$WIN_DIR/.config" "$HOME_DIR/.config"
+
+echo "[symlinks: neovim (special path)]"
 link "$WIN_DIR/.config/nvim" "$NVIM_TARGET"
 
-echo "[symlinks: fastfetch]"
-link "$WIN_DIR/.config/fastfetch" "$HOME_DIR/.config/fastfetch"
-
-echo "[symlinks: komorebi]"
-link "$WIN_DIR/.config/komorebi" "$HOME_DIR/.config/komorebi"
+echo "[symlinks: komorebi (special)]"
 link "$WIN_DIR/.config/komorebi/komorebi.json" "$HOME_DIR/komorebi.json"
 
-echo "[symlinks: whkd]"
+echo "[symlinks: whkd (rename)]"
 link "$WIN_DIR/.config/whkd/whkdrc" "$HOME_DIR/.config/whkdrc"
 
-echo "[symlinks: yasb]"
-link "$WIN_DIR/.config/yasb" "$HOME_DIR/.config/yasb"
-
-echo "[symlinks: glow]"
+echo "[symlinks: glow (special path)]"
 link "$WIN_DIR/.config/glow/glow.yml" "$LOCALAPPDATA/glow/Config/glow.yml"
 
 echo "[symlinks: zellij]"

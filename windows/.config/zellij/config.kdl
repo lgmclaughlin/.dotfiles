@@ -166,7 +166,7 @@ keybinds clear-defaults=true {
         bind "Alt Shift p" { ToggleGroupMarking; }
         bind "Ctrl q" { Quit; }
         bind "Alt Shift n" { NewTab; }
-        bind "Alt Shift m" { NewTab; }
+        bind "Alt Shift m" { WriteChars "znt"; Write 13; }
         bind "Alt Shift l" { GoToNextTab; }
         bind "Alt Shift h" { GoToPreviousTab; }
         bind "Alt Shift c" { CloseTab; }

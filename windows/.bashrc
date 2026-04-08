@@ -201,15 +201,25 @@ zln() {
 	zellij attach --create "$1"
 }
 
+znt() {
+	zellij action new-tab --cwd "$(cygpath -w "$PWD")"
+}
+
 zll() {
 	zellij list-sessions 2>/dev/null || echo "No active zellij sessions"
 }
 
 zlc() {
+	if [ "$1" = "--all" ]; then
+		zellij kill-all-sessions > /dev/null 2>&1
+		rm -rf "$LOCALAPPDATA/Zellij/cache/contract_version_1/session_info/"*
+		echo "Cleared all session caches"
+		return
+	fi
 	local session="${1:-main}"
 	local cache_dir="$LOCALAPPDATA/Zellij/cache/contract_version_1/session_info/$session"
 	if [ -d "$cache_dir" ]; then
-		zellij kill-session "$session" 2>/dev/null
+		zellij kill-session "$session" > /dev/null 2>&1
 		rm -rf "$cache_dir"
 		echo "Cleared cache for session: $session"
 	else
@@ -226,15 +236,18 @@ nvim() {
     command nvim "$@"
 }
 
-_zellij_rename_tab() {
-    if [ -n "$ZELLIJ" ]; then
-        local name="${PWD##*/}"
-        [ "$PWD" = "$HOME" ] && name="~"
-        (zellij action rename-tab "$name" &>/dev/null &)
-    fi
+_zellij_sync() {
+    local name="${PWD##*/}"
+    [ "$PWD" = "$HOME" ] && name="~"
+    (zellij action rename-tab "$name" &>/dev/null &)
 }
-PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }_zellij_rename_tab"
-_zellij_rename_tab
+
+if [ -n "$ZELLIJ" ]; then
+    if [[ ! "$PROMPT_COMMAND" =~ _zellij_sync ]]; then
+        PROMPT_COMMAND="_zellij_sync${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+    fi
+fi
+
 PS1='\[\033[38;2;255;255;255;48;2;255;40;40m\]  $ \[\033[0m\] '
 
 # fnm (fast node manager) ------------------------------------
