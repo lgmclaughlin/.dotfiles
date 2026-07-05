@@ -55,3 +55,15 @@ alt + shift + 7         : komorebic move-to-workspace 6
 alt + shift + 8         : komorebic move-to-workspace 7
 alt + shift + 9         : komorebic move-to-workspace 8
 alt + shift + 0         : komorebic move-to-workspace 9
+
+# swap all windows between current and target workspace
+alt + ctrl + shift + 1  : bash.exe -c "$HOME/bin/komorebi-swap-workspaces 0"
+alt + ctrl + shift + 2  : bash.exe -c "$HOME/bin/komorebi-swap-workspaces 1"
+alt + ctrl + shift + 3  : bash.exe -c "$HOME/bin/komorebi-swap-workspaces 2"
+alt + ctrl + shift + 4  : bash.exe -c "$HOME/bin/komorebi-swap-workspaces 3"
+alt + ctrl + shift + 5  : bash.exe -c "$HOME/bin/komorebi-swap-workspaces 4"
+alt + ctrl + shift + 6  : bash.exe -c "$HOME/bin/komorebi-swap-workspaces 5"
+alt + ctrl + shift + 7  : bash.exe -c "$HOME/bin/komorebi-swap-workspaces 6"
+alt + ctrl + shift + 8  : bash.exe -c "$HOME/bin/komorebi-swap-workspaces 7"
+alt + ctrl + shift + 9  : bash.exe -c "$HOME/bin/komorebi-swap-workspaces 8"
+alt + ctrl + shift + 0  : bash.exe -c "$HOME/bin/komorebi-swap-workspaces 9"

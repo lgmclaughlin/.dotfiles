@@ -5,7 +5,17 @@
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{9b0c6fdc-1d76-4878-a148-544e632393df}",
-    "keybindings": [],
+    "keybindings": 
+    [
+        {
+            "id": null,
+            "keys": "ctrl+v"
+        },
+        {
+            "id": "Terminal.PasteFromClipboard",
+            "keys": "ctrl+shift+v"
+        }
+    ],
     "launchMode": "focus",
     "newTabMenu": 
     [
@@ -15,7 +25,7 @@
     ],
     "profiles": 
     {
-        "defaults":
+        "defaults": 
         {
             "bellStyle": "none",
             "colorScheme": "Matugen",

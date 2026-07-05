@@ -1,3 +1,7 @@
+-- python path -------------------------------------------------
+
+vim.g.python3_host_prog = vim.fn.expand("~/.pyenv/pyenv-win/shims/python3")
+
 -- window title ------------------------------------------------
 
 vim.opt.title = true
@@ -950,7 +954,7 @@ require("lazy").setup({
 			vim.api.nvim_set_hl(0, "RenderMarkdownH6", { fg = "#251a1f", bold = true })
 			-- Subtle heading background strips
 			vim.api.nvim_set_hl(0, "RenderMarkdownH1Bg", { bg = "#ffffff", fg = "#2d1e24", bold = true })
-			vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", { bg = "#e07898", fg = "#2a1d22", bold = true })
+			vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", { bg = "#2a8bac", fg = "#ffffff", bold = true })
 			vim.api.nvim_set_hl(0, "RenderMarkdownH3Bg", { bg = "#ff2828", fg = "#ffffff", bold = true })
 			vim.api.nvim_set_hl(0, "RenderMarkdownH4Bg", { bg = "#980000", fg = "#ffffff", bold = true })
 			vim.api.nvim_set_hl(0, "RenderMarkdownH5Bg", { bg = "#980000", fg = "#ffffff", bold = true })

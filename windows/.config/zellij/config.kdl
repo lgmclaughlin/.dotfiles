@@ -142,6 +142,7 @@ keybinds clear-defaults=true {
             }
             SwitchToMode "normal"
         }
+        bind "Ctrl Shift z" { Quit; }
     }
     shared_except "locked" {
         bind "Alt left" { MoveFocusOrTab "left"; }
@@ -164,14 +165,11 @@ keybinds clear-defaults=true {
         bind "Alt o" { MoveTab "right"; }
         bind "Alt p" { TogglePaneInGroup; }
         bind "Alt Shift p" { ToggleGroupMarking; }
-        bind "Ctrl q" { Quit; }
         bind "Alt Shift n" { NewTab; }
         bind "Alt Shift m" { WriteChars "znt"; Write 13; }
         bind "Alt Shift l" { GoToNextTab; }
         bind "Alt Shift h" { GoToPreviousTab; }
         bind "Alt Shift c" { CloseTab; }
-        bind "Alt Shift [" { MoveTab "left"; }
-        bind "Alt Shift ]" { MoveTab "right"; }
     }
     shared_except "locked" "move" {
         bind "Ctrl h" { SwitchToMode "move"; }

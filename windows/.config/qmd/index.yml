@@ -1,0 +1,4 @@
+collections:
+  C:\Users\lucas.mclaughlin.sca\Documents\projects\second-brain:
+    path: C:\Users\lucas.mclaughlin.sca\Documents\projects\second-brain
+    pattern: "**/*.md"

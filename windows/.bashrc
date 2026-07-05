@@ -24,14 +24,23 @@ unset env
 
 # export ------------------------------------------------------
 
+export MSYS=winsymlinks:nativestrict
 export PATH="$HOME/scoop/shims:$PATH"
 export PATH="$HOME/AppData/Local/Programs/Git/usr/bin:$PATH"
 export PATH="$HOME/AppData/Local/Programs/Git/bin:$PATH"
 export SHELL="$HOME/AppData/Local/Programs/Git/bin/bash.exe"
 export PATH="$HOME/scoop/apps/nodejs/current:$PATH"
+export PATH="$HOME/scoop/apps/postgresql/18.3/bin:$PATH"
 export PATH="$HOME/scoop/persist/nodejs/bin:$PATH"
+export PATH="$HOME/AppData/Roaming/Python/Scripts:$PATH"
+export PATH="$PATH:C:\Tools\SysInternals"
 export PATH="$PATH:$HOME/.local/bin/"
 export PATH="$PATH:$LOCALAPPDATA/cframe/bin/"
+export PATH="$PATH:C:\Program Files (x86)\cloudflared"
+export PATH="$PATH:C:\Program Files\qView"
+export PYENV="$HOME/.pyenv/pyenv-win"
+export PYENV_HOME="$PYENV"
+export PATH="$PYENV/bin:$PYENV/shims:$PATH"
 
 # aliases -----------------------------------------------------
 
@@ -53,11 +62,13 @@ alias p='pandoc -f markdown+hard_line_breaks'
 alias tz='tar -a -c -f'
 alias tgz='tar -zcvf'
 
+alias qv='qview'
+
 # scoop full paths (workaround for PATH restrictions)
 # TODO: remove these once PATH is unlocked by IT
-alias npm='~/scoop/apps/nodejs/current/npm'
-alias node='~/scoop/apps/nodejs/current/node'
-alias claude='~/scoop/persist/nodejs/bin/claude'
+# alias npm='~/scoop/apps/nodejs/current/npm'
+# alias node='~/scoop/apps/nodejs/current/node'
+# alias claude='~/scoop/persist/nodejs/bin/claude'
 
 alias gs='git status'
 alias gr='git restore'
@@ -70,6 +81,9 @@ alias gpl='git pull'
 alias gd='git diff'
 alias gcl='git clone'
 alias gl='git log'
+alias glo='git log --oneline'
+
+alias sad='komorebic stop; shopify app dev;'
 
 alias db='dotnet build'
 alias dr='dotnet run'
@@ -91,8 +105,81 @@ alias twts='twt -t Scale'
 alias twte='twt -t EpicWW'
 
 alias cr='claude --resume'
-alias cm='claude --model claude-opus-4-5-20251101'
-alias cmr='claude --model claude-opus-4-5-20251101 --resume'
+alias cm='claude --model claude-opus-4-6'
+alias cmn='claude --model claude-opus-4-6 --name'
+alias cmr='claude --model claude-opus-4-6 --resume'
+
+alias pcd='cd ~/projects/'
+
+alias ccd='cd ~/projects/cerebro-agent-redesign/'
+
+alias prcd='cd ~/projects/prc'
+
+alias scd='cd ~/projects/sigma-port/'
+
+alias rd='v ~/Documents/projects/.priority/RUNDOWN.md'
+
+alias pv='.venv/Scripts/python.exe'
+
+pgoc() {
+  local role="${1:-tally}"
+  local host="scale-ops-db.cluster-cmoaqcnataer.us-east-1.rds.amazonaws.com"
+  local secret_id user pass
+
+  case "$role" in
+    admin)
+      secret_id="rds!cluster-c6248435-ef9f-4ef9-a197-d5ec4d24f49c"
+      ;;
+    tally)
+      secret_id="tally/prod/db-credentials"
+      ;;
+    tally-dev)
+      secret_id="tally/dev/db-credentials"
+      ;;
+    *)
+      echo "Unknown role: $role (use admin, tally, or tally-dev)"
+      return 1
+      ;;
+  esac
+
+  local secret
+  secret=$(aws secretsmanager get-secret-value \
+    --secret-id "$secret_id" \
+    --query "SecretString" --output text \
+    --region us-east-1) || return 1
+
+  if [[ "$secret" == postgresql://* ]]; then
+    export PGDSN="$secret"
+  else
+    user=$(echo "$secret" | python -c "import sys,json; print(json.load(sys.stdin)['username'])")
+    pass=$(echo "$secret" | python -c "import sys,json; import urllib.parse; print(urllib.parse.quote(json.load(sys.stdin)['password'], safe=''))")
+    export PGDSN="postgresql://${user}:${pass}@${host}:5432/scale_ops?sslmode=require"
+  fi
+
+  echo "PGDSN set for ${role} (${user:-dsn})"
+  PAGER=less psql "$PGDSN"
+}
+
+pgi() {
+  pg_ctl init -D "$HOME/scoop/apps/postgresql/18.3/data"
+}
+
+pgst() {
+  pg_ctl start -D "$HOME/scoop/apps/postgresql/18.3/data"
+}
+
+pgc() {
+  local db="${1:-scamdalf}"
+  psql -d "$db"
+}
+
+pgoq() {
+  if [[ -z "$PGDSN" ]]; then
+    echo "Run pgoc first to connect"
+    return 1
+  fi
+  psql "$PGDSN" -c "$1"
+}
 
 # autorun -----------------------------------------------------
 
@@ -185,10 +272,17 @@ present() {
 	local md="$1"
 	local tmp
 	tmp=$(mktemp /tmp/present_XXXXXX.docx)
-	awk '/^\|/ && prev != "" && prev !~ /^\|/ { print "" } { print; prev = $0 }' "$md" \
-		| pandoc -f markdown -o "$tmp" --wrap=none --columns=200
+	awk '/^\|/ && prev != "" && prev !~ /^\|/ { print "" } /^[[:space:]]*(-|[0-9]+\.)/ && prev != "" && prev !~ /^[[:space:]]*(-|[0-9]+\.)/ && prev !~ /^$/ { print "" } { print; prev = $0 }' "$md" \
+		| pandoc -f markdown -o "$tmp" --wrap=none --columns=200 --reference-doc="$HOME/.config/word/template.docx"
 	powershell.exe -NoProfile -Command "Start-Process -FilePath '$(cygpath -w "$tmp")' -Wait"
 	rm -f "$tmp"
+}
+
+makemd() {
+	local docx="$1"
+	local out="${2:-${docx%.docx}.md}"
+	pandoc -f docx -t markdown --wrap=none "$docx" -o "$out"
+	echo "Wrote $out"
 }
 
 # zellij session management ----------------------------------
