@@ -16,7 +16,9 @@ echo "Linking arch-specific nvim plugins..."
 
 for f in "$ARCH_DIR/.config/nvim/lua/custom/plugins/"*.lua; do
 	[ -f "$f" ] || continue
-	ln -sf "$f" "$HOME/.config/nvim/lua/custom/plugins/$(basename "$f")"
+	dest="$HOME/.config/nvim/lua/custom/plugins/$(basename "$f")"
+	[ "$(realpath "$f")" = "$(realpath "$dest" 2>/dev/null)" ] && continue
+	ln -sf "$f" "$dest"
 	echo "  LINKED: $(basename "$f")"
 done
 

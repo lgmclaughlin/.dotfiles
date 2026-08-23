@@ -1,1 +1,1 @@
-/home/lgm/.dotfiles/shared/.config/nvim/lua/custom/plugins/init.lua
+/home/lgm/.dotfiles/arch/.config/nvim/lua/custom/plugins/init.lua
