@@ -21,6 +21,7 @@ ln -sfn "$SHARED_DIR/.config/nvim/colors" "$HOME/.config/nvim/colors"
 ln -sf "$SHARED_DIR/.config/nvim/lua/comments.lua" "$HOME/.config/nvim/lua/comments.lua"
 ln -sf "$SHARED_DIR/.config/nvim/lua/devtools.lua" "$HOME/.config/nvim/lua/devtools.lua"
 ln -sfn "$SHARED_DIR/.config/nvim/lua/kickstart" "$HOME/.config/nvim/lua/kickstart"
+ln -sf "$SHARED_DIR/.config/nvim/lua/custom/markdown.lua" "$HOME/.config/nvim/lua/custom/markdown.lua"
 ln -sf "$SHARED_DIR/.config/nvim/lua/custom/plugins/init.lua" "$HOME/.config/nvim/lua/custom/plugins/init.lua"
 ln -sf "$SHARED_DIR/.config/nvim/lua/custom/plugins/debug.lua" "$HOME/.config/nvim/lua/custom/plugins/debug.lua"
 

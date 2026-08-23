@@ -112,6 +112,7 @@ link "$SHARED_DIR/.config/nvim/colors" "$NVIM_TARGET/colors"
 link "$SHARED_DIR/.config/nvim/lua/comments.lua" "$NVIM_TARGET/lua/comments.lua"
 link "$SHARED_DIR/.config/nvim/lua/devtools.lua" "$NVIM_TARGET/lua/devtools.lua"
 link "$SHARED_DIR/.config/nvim/lua/kickstart" "$NVIM_TARGET/lua/kickstart"
+link "$SHARED_DIR/.config/nvim/lua/custom/markdown.lua" "$NVIM_TARGET/lua/custom/markdown.lua"
 link "$SHARED_DIR/.config/nvim/lua/custom/plugins/init.lua" "$NVIM_TARGET/lua/custom/plugins/init.lua"
 link "$SHARED_DIR/.config/nvim/lua/custom/plugins/debug.lua" "$NVIM_TARGET/lua/custom/plugins/debug.lua"
 

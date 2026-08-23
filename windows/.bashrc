@@ -2,6 +2,10 @@
 
 [[ $- != *i* ]] && return
 
+# local overrides (secrets, machine-specific config) ----------
+
+[[ -f ~/.bashrc.local ]] && source ~/.bashrc.local
+
 # ssh agent ---------------------------------------------------
 
 env=~/.ssh/agent.env
@@ -160,6 +164,43 @@ pgoc() {
   PAGER=less psql "$PGDSN"
 }
 
+pgic() {
+  local role="${1:-cerebro}"
+  local host="scale-internal-tools-db.cmoaqcnataer.us-east-1.rds.amazonaws.com"
+  local secret_id
+
+  case "$role" in
+    cerebro)
+      secret_id="cerebro/prod/db-credentials"
+      ;;
+    cerebro-dev)
+      secret_id="cerebro/dev/db-credentials"
+      ;;
+    sentrack)
+      secret_id="sentrack/db-credentials"
+      ;;
+    *)
+      echo "Unknown role: $role (use cerebro, cerebro-dev, or sentrack)"
+      return 1
+      ;;
+  esac
+
+  local secret
+  secret=$(aws secretsmanager get-secret-value \
+    --secret-id "$secret_id" \
+    --query "SecretString" --output text \
+    --region us-east-1) || return 1
+
+  local user pass db
+  user=$(echo "$secret" | python -c "import sys,json; print(json.load(sys.stdin)['username'])")
+  pass=$(echo "$secret" | python -c "import sys,json; import urllib.parse; print(urllib.parse.quote(json.load(sys.stdin)['password'], safe=''))")
+  db=$(echo "$secret" | python -c "import sys,json; print(json.load(sys.stdin)['database'])")
+  export PGDSN="postgresql://${user}:${pass}@${host}:5432/${db}?sslmode=require"
+
+  echo "PGDSN set for ${role} (${user}@${db})"
+  PAGER=less psql "$PGDSN"
+}
+
 pgi() {
   pg_ctl init -D "$HOME/scoop/apps/postgresql/18.3/data"
 }
@@ -307,18 +348,15 @@ zlc() {
 	if [ "$1" = "--all" ]; then
 		zellij kill-all-sessions > /dev/null 2>&1
 		rm -rf "$LOCALAPPDATA/Zellij/cache/contract_version_1/session_info/"*
-		echo "Cleared all session caches"
+		rm -rf "$LOCALAPPDATA/Temp/zellij/contract_version_1/"*
+		echo "Cleared all sessions"
 		return
 	fi
 	local session="${1:-main}"
-	local cache_dir="$LOCALAPPDATA/Zellij/cache/contract_version_1/session_info/$session"
-	if [ -d "$cache_dir" ]; then
-		zellij kill-session "$session" > /dev/null 2>&1
-		rm -rf "$cache_dir"
-		echo "Cleared cache for session: $session"
-	else
-		echo "No cache found for session: $session"
-	fi
+	zellij kill-session "$session" > /dev/null 2>&1
+	rm -rf "$LOCALAPPDATA/Zellij/cache/contract_version_1/session_info/$session"
+	rm -rf "$LOCALAPPDATA/Temp/zellij/contract_version_1/$session"
+	echo "Cleared session: $session"
 }
 
 # prompt str --------------------------------------------------

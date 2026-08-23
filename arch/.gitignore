@@ -21,3 +21,16 @@
 .config/rclone/
 .wallpaper/options/claudia-andujar-hes-an-addict-3.jpg
 user-dirs.locale
+
+# symlinks created by install.sh (real files live in shared/)
+.config/git
+.config/glow
+.config/word
+.config/nvim/init.lua
+.config/nvim/colors
+.config/nvim/lua/comments.lua
+.config/nvim/lua/devtools.lua
+.config/nvim/lua/kickstart
+.config/nvim/lua/custom/markdown.lua
+.config/nvim/lua/custom/plugins/init.lua
+.config/nvim/lua/custom/plugins/debug.lua
