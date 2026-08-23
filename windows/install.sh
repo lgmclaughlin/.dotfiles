@@ -9,6 +9,7 @@ export MSYS=winsymlinks:nativestrict
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 WIN_DIR="$REPO_DIR/windows"
+SHARED_DIR="$REPO_DIR/shared"
 HOME_DIR="$HOME"
 
 NVIM_TARGET="$HOME_DIR/AppData/Local/nvim"
@@ -99,8 +100,27 @@ link "$WIN_DIR/.gitconfig-work" "$HOME_DIR/.gitconfig-work"
 echo "[symlinks: .config (blanket)]"
 link "$WIN_DIR/.config" "$HOME_DIR/.config"
 
-echo "[symlinks: neovim (special path)]"
-link "$WIN_DIR/.config/nvim" "$NVIM_TARGET"
+echo "[symlinks: shared configs]"
+link "$SHARED_DIR/.config/git" "$HOME_DIR/.config/git"
+link "$SHARED_DIR/.config/glow" "$HOME_DIR/.config/glow"
+link "$SHARED_DIR/.config/word" "$HOME_DIR/.config/word"
+
+echo "[symlinks: neovim (shared base)]"
+mkdir -p "$NVIM_TARGET/lua/custom/plugins"
+link "$SHARED_DIR/.config/nvim/init.lua" "$NVIM_TARGET/init.lua"
+link "$SHARED_DIR/.config/nvim/colors" "$NVIM_TARGET/colors"
+link "$SHARED_DIR/.config/nvim/lua/comments.lua" "$NVIM_TARGET/lua/comments.lua"
+link "$SHARED_DIR/.config/nvim/lua/devtools.lua" "$NVIM_TARGET/lua/devtools.lua"
+link "$SHARED_DIR/.config/nvim/lua/kickstart" "$NVIM_TARGET/lua/kickstart"
+link "$SHARED_DIR/.config/nvim/lua/custom/plugins/init.lua" "$NVIM_TARGET/lua/custom/plugins/init.lua"
+link "$SHARED_DIR/.config/nvim/lua/custom/plugins/debug.lua" "$NVIM_TARGET/lua/custom/plugins/debug.lua"
+
+echo "[symlinks: neovim (windows-specific)]"
+link "$WIN_DIR/.config/nvim/lazy-lock.json" "$NVIM_TARGET/lazy-lock.json"
+for f in "$WIN_DIR/.config/nvim/lua/custom/plugins/"*.lua; do
+	[ -f "$f" ] || continue
+	link "$f" "$NVIM_TARGET/lua/custom/plugins/$(basename "$f")"
+done
 
 echo "[symlinks: komorebi (special)]"
 link "$WIN_DIR/.config/komorebi/komorebi.json" "$HOME_DIR/komorebi.json"

@@ -12,14 +12,17 @@ export HYPRSHOT_DIR=/home/lgm/pictures/
 
 alias c='clear'
 
-alias ls='exa -la --group-directories-first'
-alias lst='exa -a --tree --group-directories-first'
-alias lstg='exa -a --tree --git-ignore --group-directories-first'
+alias ls='eza -la --group-directories-first'
+alias lst='eza -a --tree --group-directories-first'
+alias lstg='eza -a --tree --git-ignore --group-directories-first'
 
 alias grp='grep --color=auto'
 alias grpr='grep -r --color=auto'
 
 alias v='nvim'
+
+alias tz='tar -a -c -f'
+alias tgz='tar -zcvf'
 
 alias t='tmux'
 alias tl='tmux ls'
@@ -40,6 +43,7 @@ alias gpl='git pull'
 alias gd='git diff'
 alias gcl='git clone'
 alias gl='git log'
+alias glo='git log --oneline'
 
 alias db='dotnet build'
 alias dr='dotnet run'
@@ -49,12 +53,21 @@ alias dcu='docker compose up -d'
 alias dcd='docker compose down'
 alias deeww='docker compose -p epicww exec sandbox bash -lc "bash"'
 
-alias ewwssh='ssh -i ~/.ssh/bluehost_epicww epicwood@162.241.218.139'
-alias ewwcd='cd ~/dev/web/epicww/staging/5658'
-alias ewwtcd='cd ~/dev/web/epicww/staging/5658/workspace/wp-content/themes/epicww/'
-alias ewwst='ewwcd && ./setup/start.sh'
+alias cr='claude --resume'
+alias cm='claude --model claude-opus-4-6'
+alias cmr='claude --model claude-opus-4-6 --resume'
+alias cmn='claude --model claude-opus-4-6 --name'
 
-alias sbcd='cd ~/dev/git/personal/sandbox/'
+alias ewwssh='ssh -i ~/.ssh/bluehost_epicww epicwood@162.241.218.139'
+alias ewwcd='cd ~/dev/web/epicww/staging/5658/workspace/'
+alias ewwtcd='cd ~/dev/web/epicww/staging/5658/workspace/wp-content/themes/epicww/'
+# alias ewwst='ewwcd && ./setup/start.sh'
+alias ewwst='sandbox -p eww start'
+# alias ewwa='sandbox --project eww attach'
+
+alias pcd='cd ~/documents/dev/projects'
+alias ecd='cd ~/documents/dev/projects/epicww'
+alias sbcd='cd ~/documents/dev/projects/sandbox/'
 alias sblcd='cd ~/.local/share/sandbox/logs/'
 alias sbpcd='cd ~/.local/share/sandbox/projects/'
 alias sbcl='rm -rf ~/.local/share/sandbox/logs/commands/* && rm -rf ~/.local/share/sandbox/logs/sessions/* && rm -rf ~/.local/share/sandbox/projects/*/logs/commands/* && rm -rf ~/.local/share/sandbox/projects/*/logs/sessions/*'
@@ -69,6 +82,8 @@ alias twts='twt -t Scale'
 alias twte='twt -t EpicWW'
 
 alias sp='spotify_player'
+
+alias iv='imv'
 
 # autorun -----------------------------------------------------
 
@@ -161,8 +176,19 @@ tln() {
 
 tll () {
 	if [ -z "$1" ]; then
-		echo "Usage: tll <session_name>"
-		return 1
+		local found=0
+		for sock in /tmp/tmux-$(id -u)/*; do
+			[ -S "$sock" ] || continue
+			local name=$(basename "$sock")
+			local sessions
+			sessions=$(tmux -L "$name" ls 2>/dev/null) || continue
+			echo "[$name]"
+			echo "$sessions"
+			echo
+			found=1
+		done
+		[ "$found" -eq 0 ] && echo "No active tmux sessions found."
+		return 0
 	fi
 
 	local name="$1"
@@ -196,8 +222,9 @@ tclearsaves () {
 	command rm -rf ~/.tmux/session-saves/*
 }
 
-## twt - shorthand for timew track with relative day offsets
-## usage: twt [-t tag ...] <days_ago> <HHMM> - <days_ago> <HHMM>
+# twt - shorthand for timew track with relative day offsets
+# usage: twt [-t tag ...] <days_ago> <HHMM> - <days_ago> <HHMM>
+unalias twt 2>/dev/null
 twt() {
 	local tags=()
 
@@ -233,6 +260,22 @@ twt() {
 	fi
 
 	timew track "$start" - "$end" "${tags[@]}"
+}
+
+present() {
+	local md="$1"
+	local tmp
+	tmp=$(mktemp /tmp/present_XXXXXX.docx)
+	awk '/^\|/ && prev != "" && prev !~ /^\|/ { print "" } /^[[:space:]]*(-|[0-9]+\.)/ && prev != "" && prev !~ /^[[:space:]]*(-|[0-9]+\.)/ && prev !~ /^$/ { print "" } { print; prev = $0 }' "$md" \
+		| pandoc -f markdown -o "$tmp" --wrap=none --columns=200 --reference-doc="$HOME/.config/word/template.docx"
+	xdg-open "$tmp"
+}
+
+makemd() {
+	local docx="$1"
+	local out="${2:-${docx%.docx}.md}"
+	pandoc -f docx -t markdown --wrap=none "$docx" -o "$out"
+	echo "Wrote $out"
 }
 
 # prompt str --------------------------------------------------

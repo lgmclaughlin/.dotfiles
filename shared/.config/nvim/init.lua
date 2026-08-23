@@ -1,6 +1,8 @@
--- python path -------------------------------------------------
+-- platform ----------------------------------------------------
 
-vim.g.python3_host_prog = vim.fn.expand("~/.pyenv/pyenv-win/shims/python3")
+if vim.fn.has("win32") == 1 then
+	vim.g.python3_host_prog = vim.fn.expand("~/.pyenv/pyenv-win/shims/python3")
+end
 
 -- window title ------------------------------------------------
 
@@ -865,11 +867,14 @@ require("lazy").setup({
 			--  Check out: https://github.com/echasnovski/mini.nvim
 		end,
 	},
-	{
+	{ -- parser management (highlighting/indent are built-in on 0.12+)
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
+		lazy = false,
 		build = ":TSUpdate",
-		opts = {
-			ensure_installed = {
+		config = function()
+			local ts = require("nvim-treesitter")
+			ts.install({
 				"bash",
 				"c",
 				"diff",
@@ -881,16 +886,16 @@ require("lazy").setup({
 				"query",
 				"vim",
 				"vimdoc",
-			},
-			auto_install = true,
-			highlight = {
-				enable = true,
-				additional_vim_regex_highlighting = { "ruby" },
-			},
-			indent = { enable = true, disable = { "ruby" } },
-		},
-		config = function(_, opts)
-			require("nvim-treesitter.config").setup(opts)
+			})
+
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function()
+					pcall(vim.treesitter.start)
+					if vim.bo.filetype ~= "ruby" then
+						vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+					end
+				end,
+			})
 		end,
 	},
 
