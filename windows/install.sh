@@ -101,20 +101,8 @@ echo "[symlinks: .config (blanket)]"
 link "$WIN_DIR/.config" "$HOME_DIR/.config"
 
 echo "[symlinks: shared configs]"
-link "$SHARED_DIR/.config/git" "$HOME_DIR/.config/git"
-link "$SHARED_DIR/.config/glow" "$HOME_DIR/.config/glow"
-link "$SHARED_DIR/.config/word" "$HOME_DIR/.config/word"
-
-echo "[symlinks: neovim (shared base)]"
-mkdir -p "$NVIM_TARGET/lua/custom/plugins"
-link "$SHARED_DIR/.config/nvim/init.lua" "$NVIM_TARGET/init.lua"
-link "$SHARED_DIR/.config/nvim/colors" "$NVIM_TARGET/colors"
-link "$SHARED_DIR/.config/nvim/lua/comments.lua" "$NVIM_TARGET/lua/comments.lua"
-link "$SHARED_DIR/.config/nvim/lua/devtools.lua" "$NVIM_TARGET/lua/devtools.lua"
-link "$SHARED_DIR/.config/nvim/lua/kickstart" "$NVIM_TARGET/lua/kickstart"
-link "$SHARED_DIR/.config/nvim/lua/custom/markdown.lua" "$NVIM_TARGET/lua/custom/markdown.lua"
-link "$SHARED_DIR/.config/nvim/lua/custom/plugins/init.lua" "$NVIM_TARGET/lua/custom/plugins/init.lua"
-link "$SHARED_DIR/.config/nvim/lua/custom/plugins/debug.lua" "$NVIM_TARGET/lua/custom/plugins/debug.lua"
+do_link() { link "$1" "$2"; }
+source "$SHARED_DIR/install.sh"
 
 echo "[symlinks: neovim (windows-specific)]"
 link "$WIN_DIR/.config/nvim/lazy-lock.json" "$NVIM_TARGET/lazy-lock.json"

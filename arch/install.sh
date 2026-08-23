@@ -7,23 +7,10 @@ ARCH_DIR="$REPO_DIR/arch"
 
 # shared config ------------------------------------------------
 
-echo "Linking shared configs..."
+NVIM_TARGET="$HOME/.config/nvim"
 
-ln -sfn "$SHARED_DIR/.config/git" "$HOME/.config/git"
-ln -sfn "$SHARED_DIR/.config/glow" "$HOME/.config/glow"
-ln -sfn "$SHARED_DIR/.config/word" "$HOME/.config/word"
-
-echo "Linking shared nvim config..."
-
-mkdir -p "$HOME/.config/nvim/lua/custom/plugins"
-ln -sf "$SHARED_DIR/.config/nvim/init.lua" "$HOME/.config/nvim/init.lua"
-ln -sfn "$SHARED_DIR/.config/nvim/colors" "$HOME/.config/nvim/colors"
-ln -sf "$SHARED_DIR/.config/nvim/lua/comments.lua" "$HOME/.config/nvim/lua/comments.lua"
-ln -sf "$SHARED_DIR/.config/nvim/lua/devtools.lua" "$HOME/.config/nvim/lua/devtools.lua"
-ln -sfn "$SHARED_DIR/.config/nvim/lua/kickstart" "$HOME/.config/nvim/lua/kickstart"
-ln -sf "$SHARED_DIR/.config/nvim/lua/custom/markdown.lua" "$HOME/.config/nvim/lua/custom/markdown.lua"
-ln -sf "$SHARED_DIR/.config/nvim/lua/custom/plugins/init.lua" "$HOME/.config/nvim/lua/custom/plugins/init.lua"
-ln -sf "$SHARED_DIR/.config/nvim/lua/custom/plugins/debug.lua" "$HOME/.config/nvim/lua/custom/plugins/debug.lua"
+do_link() { ln -sfn "$1" "$2"; }
+source "$SHARED_DIR/install.sh"
 
 echo "Linking arch-specific nvim plugins..."
 
