@@ -1,1 +1,0 @@
-/home/lgm/.dotfiles/arch/.config/nvim/lua/custom/plugins/init.lua
