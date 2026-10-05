@@ -7,6 +7,7 @@ Shared documentation that defines how we build software. These files are referen
 ```
 common/
   devops/           # shipping and operations: CI/CD, ticketing, deployment
+  documentation/    # documentation standard (copied from ~/projects/documentation)
   infra/            # provisioning and config: cloud services, secrets, IAM
   patterns/         # recurring design solutions with reference implementations
   code/             # style, error handling, testing (planned)
@@ -22,6 +23,13 @@ How code moves from repo to running. CI/CD pipelines, ticketing, deployment stra
 
 - `ticket-standard.md`: how to write tickets (tone, structure, constraints). Tool-agnostic.
 - `ticket-management.md`: Jira-specific API reference, field mappings, operations.
+
+### documentation/
+
+What docs a project has and how they are written. Read by the `/documentation` skill. The source of truth is the `~/projects/documentation` repo; edit there and copy here.
+
+- `style.md`: principles, naming and location, writing style.
+- `types.md`: every document type, its purpose, and its structure.
 
 ### infra/
 
