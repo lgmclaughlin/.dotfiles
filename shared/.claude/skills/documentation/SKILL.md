@@ -8,7 +8,7 @@ You are about to perform a thorough documentation audit of this project. This is
 
 ### Phase 1: Load the Standard
 
-1. Read `~/.claude/common/documentation/style.md` (principles, naming, writing style) and `~/.claude/common/documentation/types.md` (every doc type and its structure). Together these are the living documentation standard.
+1. Read `style.md` (principles, naming, writing style) and `types.md` (every doc type and its structure) from this skill's base directory. Together these are the living documentation standard.
 2. Internalize all core documents, niche documents, principles, and style rules.
 
 ### Phase 2: Deep Codebase Scan
@@ -89,7 +89,7 @@ After plan approval:
    - Every script must have an example invocation.
    - Every environment variable must have its source and an example value.
    - If you do not have this information and the user did not provide it, leave a `<!-- TODO: [specific question] -->` comment so it is easy to find and fill later.
-5. If the plan includes a standard update, append the new niche doc entry to the Niche Documents section of `~/projects/documentation/types.md` (the source repo), then copy it to `~/.claude/common/documentation/types.md`.
+5. If the plan includes a standard update, append the new niche doc entry to the Niche Documents section of `types.md` in this skill's base directory. Tell the user to make the same change in the documentation repo, since reinstalling overwrites the installed copy.
 6. After all docs are written, do a final consistency pass:
    - Do cross-doc links resolve?
    - Does README's Documentation section list every doc that now exists?
