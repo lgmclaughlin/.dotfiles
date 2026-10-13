@@ -8,7 +8,7 @@ Investigate the production issue discussed in the current conversation, then pro
 
 ### Steps
 
-1. **Read the standard.** Load `~/.claude/common/post-mortem-standard.md` for the required sections, detail level, and style rules.
+1. **Read the standard.** Load [references/standard.md](references/standard.md) for the required sections, detail level, and style rules.
 
 2. **Gather context from the conversation.** Identify: what broke, when it was noticed, what the symptoms were, how the root cause was found, what the fix was, and any red herrings encountered along the way. If details are unclear or missing, ask before writing.
 

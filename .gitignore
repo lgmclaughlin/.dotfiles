@@ -1,2 +1,9 @@
 shared/.claude/skills/internal-creds/
 shared/.claude/skills/scale-ops-creds/
+
+# Managed by Claude Code: removed built-in skills and skills synced from claude.ai
+shared/.claude/skills/.trash/
+shared/.claude/skills/synced/
+
+# Installed copy; the source is scale-media/auto-doc and its install.sh
+shared/.claude/skills/auto-doc/

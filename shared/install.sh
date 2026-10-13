@@ -28,4 +28,24 @@ do_link "$SHARED_DIR/.config/nvim/lua/custom/plugins/debug.lua" "$NVIM_TARGET/lu
 echo "[shared: claude]"
 mkdir -p "$HOME/.claude"
 do_link "$SHARED_DIR/.claude/skills" "$HOME/.claude/skills"
-do_link "$SHARED_DIR/.claude/common" "$HOME/.claude/common"
+
+echo "[shared: claude status line]"
+mkdir -p "$HOME/.claude/scripts"
+do_link "$SHARED_DIR/.claude/scripts/statusline.py" "$HOME/.claude/scripts/statusline.py"
+
+# Claude Code on Windows needs C:/ style paths, so convert Git Bash paths when cygpath exists
+statusline_script="$HOME/.claude/scripts/statusline.py"
+settings_file="$HOME/.claude/settings.json"
+register_script="$SHARED_DIR/.claude/scripts/register_statusline.py"
+if command -v cygpath >/dev/null 2>&1; then
+	statusline_script="$(cygpath -m "$statusline_script")"
+	settings_file="$(cygpath -m "$settings_file")"
+	register_script="$(cygpath -m "$register_script")"
+fi
+
+python_bin="$(command -v python3 || command -v python || true)"
+if [ -n "$python_bin" ]; then
+	"$python_bin" "$register_script" "$settings_file" "$statusline_script"
+else
+	echo "  SKIP (python not found): statusLine not registered in $settings_file"
+fi

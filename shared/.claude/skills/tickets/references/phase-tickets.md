@@ -1,33 +1,15 @@
-# DevOps Tickets
+# Phase Tickets
 
-Generate and create issue tracker tickets from the current phase plan.
+Create tickets from the current phase plan. Run after the shared inputs and Check Epic step in SKILL.md.
 
-## Inputs
+## Additional inputs
 
-Read the following files in order:
-
-1. `.claude/current-phase.md` in the current project - the active phase plan with tasks
-2. `.claude/overview.md` in the current project - project overview (used for initiative ticket description)
-3. `~/.claude/common/devops/ticket-standard.md` - writing style, constraints, and ticket structure
-4. `~/.claude/common/devops/ticket-management.md` - issue tracker tooling and API reference
-5. `.devops/tickets.md` in the current project root - project-specific config (project key, epic, repo URL, assignees)
-
-If `.devops/tickets.md` does not exist, stop and tell the user to create one (or run `cframe add --devops` if using cframe).
+- `.claude/current-phase.md` in the current project: the active phase plan with tasks
+- `.claude/overview.md` in the current project: project overview (used for initiative ticket description)
 
 If `current-phase.md` is empty or has no tasks, stop and tell the user there is nothing to ticket.
 
 ## Steps
-
-### 1. Check Epic
-
-Read the current epic key from `.devops/tickets.md`.
-
-If no epic is configured:
-- Propose an epic to the user (title and short description) based on the project context
-- Keep the description at the capability level: what the system does, not implementation details like vendor names, brand names, schema locations, or current scope. These rot quickly. Prefer durable language that stays accurate as the project evolves. See the Detail Sensitivity section in ticket-standard.md.
-- Wait for the user to confirm or adjust
-- Create the epic in the issue tracker
-- Update `.devops/tickets.md` with the new epic key
 
 ### 2. Derive Phase Label
 

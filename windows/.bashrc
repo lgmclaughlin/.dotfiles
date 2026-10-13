@@ -109,17 +109,19 @@ alias twts='twt -t Scale'
 alias twte='twt -t EpicWW'
 
 alias cr='claude --resume'
+alias cn='claude --name'
 alias cm='claude --model claude-opus-4-6'
 alias cmn='claude --model claude-opus-4-6 --name'
 alias cmr='claude --model claude-opus-4-6 --resume'
 
 alias pcd='cd ~/projects/'
-
 alias ccd='cd ~/projects/cerebro-agent-redesign/'
+alias tcd='cd ~/projects/tally/'
+alias scd='cd ~/projects/sentrack/'
 
-alias prcd='cd ~/projects/prc'
+alias cap='cframe archive phase'
 
-alias scd='cd ~/projects/sigma-port/'
+alias rcd='cd $(pwd | grep -ioe "^.*projects/[a-z-]*")'
 
 alias rd='v ~/Documents/projects/.priority/RUNDOWN.md'
 
